@@ -40,10 +40,7 @@ namespace RandomOps
         /// <summary>
         /// The number of bytes to fill the buffer with.
         /// </summary>
-        protected int FillCount
-        {
-            get { return BufferSize - Queue.Count; }
-        }
+        protected int FillCount => BufferSize - Queue.Count;
 
         /// <summary>
         /// The maximum number of bytes that can be retrieved in a single
@@ -51,10 +48,8 @@ namespace RandomOps
         /// but some sources allow a maximum number of bytes that can be
         /// retrieved each time or they will generate an error.
         /// </summary>
-        protected virtual int MaxRetrieveLength
-        {
-            get { return BufferSize; }
-        }
+        protected virtual int MaxRetrieveLength => BufferSize;
+
         #endregion
 
         #region Internal variables.

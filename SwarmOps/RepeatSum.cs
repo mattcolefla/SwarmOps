@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -33,19 +34,13 @@ namespace SwarmOps
         /// <summary>
         /// Return problem-name.
         /// </summary>
-        public override string Name
-        {
-            get { return "RepeatSum(" + Optimizer.Name + ")"; }
-        }
+        public override string Name => string.Intern("RepeatSum(") + Optimizer.Name + string.Intern(")");
 
         /// <summary>
         /// Return minimum fitness possible. This is zero as
         /// the fitness summation is normalized.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return 0; }
-        }
+        public override double MinFitness => 0;
 
         /// <summary>
         /// Compute the fitness by repeating a number of optimization runs
@@ -68,6 +63,8 @@ namespace SwarmOps
                 // Compute the normalized fitness.
                 double fitnessNormalized = result.Fitness - Optimizer.MinFitness;
 
+                // This is most likely where your debugger will stop if your problem minimum fitness
+                // is not accurate (most likely defaulting to 0).
                 Debug.Assert(fitnessNormalized >= 0);
 
                 // Accumulate the fitness sum.

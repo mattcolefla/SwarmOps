@@ -30,18 +30,12 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "Sphere"; }
-        }
+        public override string Name => "Sphere";
 
         /// <summary>
         /// Minimum possible fitness.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return 0; }
-        }
+        public override double MinFitness => 0;
 
         /// <summary>
         /// Compute and return fitness for the given parameters.
@@ -65,10 +59,7 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Has the gradient has been implemented?
         /// </summary>
-        public override bool HasGradient
-        {
-            get { return true; }
-        }
+        public override bool HasGradient => true;
 
         /// <summary>
         /// Compute the gradient of the fitness-function.

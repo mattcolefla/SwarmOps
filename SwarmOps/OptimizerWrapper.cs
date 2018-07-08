@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -45,85 +46,55 @@ namespace SwarmOps
         /// <summary>
         /// Return LowerBound of wrapped Optimizer.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return Optimizer.LowerBound; }
-        }
+        public override double[] LowerBound => Optimizer.LowerBound;
 
         /// <summary>
         /// Return UpperBound of wrapped Optimizer.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return Optimizer.UpperBound; }
-        }
+        public override double[] UpperBound => Optimizer.UpperBound;
 
         /// <summary>
         /// Return LowerInit of wrapped Optimizer.
         /// </summary>
-        public override double[] LowerInit
-        {
-            get { return Optimizer.LowerInit; }
-        }
+        public override double[] LowerInit => Optimizer.LowerInit;
 
         /// <summary>
         /// Return UpperInit of wrapped Optimizer.
         /// </summary>
-        public override double[] UpperInit
-        {
-            get { return Optimizer.UpperInit; }
-        }
+        public override double[] UpperInit => Optimizer.UpperInit;
 
         /// <summary>
         /// Return Dimensionality of wrapped Optimizer.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return Optimizer.Dimensionality; }
-        }
+        public override int Dimensionality => Optimizer.Dimensionality;
 
         /// <summary>
         /// Return MinFitness of wrapped Optimizer.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return Optimizer.MinFitness; }
-        }
+        public override double MinFitness => Optimizer.MinFitness;
 
         /// <summary>
         /// Return MaxFitness of wrapped Optimizer.
         /// </summary>
-        public override double MaxFitness
-        {
-            get { return Optimizer.MaxFitness; }
-        }
+        public override double MaxFitness => Optimizer.MaxFitness;
 
         /// <summary>
         /// Return AcceptableFitness of wrapped Optimizer.
         /// </summary>
-        public override double AcceptableFitness
-        {
-            get { return Optimizer.AcceptableFitness; }
-        }
+        public override double AcceptableFitness => Optimizer.AcceptableFitness;
 
         /// <summary>
         /// Return ParameterName of wrapped Optimizer.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return Optimizer.ParameterName; }
-        }
+        public override string[] ParameterName => Optimizer.ParameterName;
 
         /// <summary>
         /// Return DefaultParameters of wrapped Optimizer.
         /// </summary>
-        public override double[] DefaultParameters
-        {
-            get { return Optimizer.DefaultParameters; }
-        }
+        public override double[] DefaultParameters => Optimizer.DefaultParameters;
 
         /// <summary>
-        /// Enforce constraints and evaluate feasiblity of the wrapped Optimizer.
+        /// Enforce constraints and evaluate feasibility of the wrapped Optimizer.
         /// </summary>
         /// <param name="parameters">Control parameters.</param>
         public override bool EnforceConstraints(ref double[] parameters)

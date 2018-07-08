@@ -56,50 +56,36 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Dimensionality of the benchmark problem.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return _dimensionality; }
-        }
+        public override int Dimensionality => _dimensionality;
 
         double[] _lowerBound;
 
         /// <summary>
         /// Lower search-space boundary for the benchmark problem.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return _lowerBound; }
-        }
+        public override double[] LowerBound => _lowerBound;
 
         double[] _upperBound;
 
         /// <summary>
         /// Upper search-space boundary for the benchmark problem.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return _upperBound; }
-        }
+        public override double[] UpperBound => _upperBound;
 
         double[] _lowerInit;
 
         /// <summary>
         /// Lower initialization boundary for the benchmark problem.
         /// </summary>
-        public override double[] LowerInit
-        {
-            get { return _lowerInit; }
-        }
+        public override double[] LowerInit => _lowerInit;
 
         double[] _upperInit;
 
         /// <summary>
         /// Upper initialization boundary for the benchmark problem.
         /// </summary>
-        public override double[] UpperInit
-        {
-            get { return _upperInit; }
-        }
+        public override double[] UpperInit => _upperInit;
+
         #endregion.
     }
 }

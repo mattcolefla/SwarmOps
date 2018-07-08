@@ -84,13 +84,8 @@ namespace RandomOps
         /// <summary>
         /// The maximum possible value returned by Rand().
         /// </summary>
-        public override sealed UInt32 RandMax
-        {
-            get
-            {
-                return UInt32.MaxValue;
-            }
-        }
+        public override sealed UInt32 RandMax => UInt32.MaxValue;
+
         #endregion
     }
 }

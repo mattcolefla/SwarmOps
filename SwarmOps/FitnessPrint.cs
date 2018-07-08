@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -54,10 +55,7 @@ namespace SwarmOps
         /// <summary>
         /// Return name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "FitnessPrint (" + Problem.Name + ")"; }
-        }
+        public override string Name => "FitnessPrint (" + Problem.Name + ")";
 
         /// <summary>
         /// Compute fitness of wrapped problem and print the result.

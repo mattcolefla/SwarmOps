@@ -44,10 +44,7 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "SphereSleep"; }
-        }
+        public override string Name => "SphereSleep";
 
         /// <summary>
         /// Compute and return fitness for the given parameters.

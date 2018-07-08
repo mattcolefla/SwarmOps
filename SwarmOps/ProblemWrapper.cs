@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -39,90 +40,57 @@ namespace SwarmOps
         /// <summary>
         /// Return Name of the wrapped problem.
         /// </summary>
-        public override string Name
-        {
-            get { return Problem.Name; }
-        }
+        public override string Name => Problem.Name;
 
         /// <summary>
         /// Return LowerBound of wrapped problem.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return Problem.LowerBound; }
-        }
+        public override double[] LowerBound => Problem.LowerBound;
 
         /// <summary>
         /// Return UpperBound of wrapped problem.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return Problem.UpperBound; }
-        }
+        public override double[] UpperBound => Problem.UpperBound;
 
         /// <summary>
         /// Return LowerInit of wrapped problem.
         /// </summary>
-        public override double[] LowerInit
-        {
-            get { return Problem.LowerInit; }
-        }
+        public override double[] LowerInit => Problem.LowerInit;
 
         /// <summary>
         /// Return UpperInit of wrapped problem.
         /// </summary>
-        public override double[] UpperInit
-        {
-            get { return Problem.UpperInit; }
-        }
+        public override double[] UpperInit => Problem.UpperInit;
 
         /// <summary>
         /// Return Dimensionality of wrapped problem.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return Problem.Dimensionality; }
-        }
+        public override int Dimensionality => Problem.Dimensionality;
 
         /// <summary>
         /// Return MinFitness of wrapped problem.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return Problem.MinFitness; }
-        }
+        public override double MinFitness => Problem.MinFitness;
 
         /// <summary>
         /// Return MaxFitness of wrapped problem.
         /// </summary>
-        public override double MaxFitness
-        {
-            get { return Problem.MaxFitness; }
-        }
+        public override double MaxFitness => Problem.MaxFitness;
 
         /// <summary>
         /// Return AcceptableFitness of wrapped problem.
         /// </summary>
-        public override double AcceptableFitness
-        {
-            get { return Problem.AcceptableFitness; }
-        }
+        public override double AcceptableFitness => Problem.AcceptableFitness;
 
         /// <summary>
         /// Return ParameterName of wrapped problem.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return Problem.ParameterName; }
-        }
+        public override string[] ParameterName => Problem.ParameterName;
 
         /// <summary>
         /// Return HasGradient of wrapped problem.
         /// </summary>
-        public override bool HasGradient
-        {
-            get { return Problem.HasGradient; }
-        }
+        public override bool HasGradient => Problem.HasGradient;
 
         /// <summary>
         /// Compute the gradient of the wrapped problem.

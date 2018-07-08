@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -36,50 +37,33 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name
-        {
-            get { return "RND"; }
-        }
+        public override string Name => "RND";
 
         /// <summary>
         /// Number of control parameters for optimizer.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return 0; }
-        }
+        public override int Dimensionality => 0;
 
         /// <summary>
         /// Control parameter names.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return null; }
-        }
+        public override string[] ParameterName => null;
 
         /// <summary>
         /// Default control parameters.
         /// </summary>
-        public override double[] DefaultParameters
-        {
-            get { return null; }
-        }
+        public override double[] DefaultParameters => null;
 
         /// <summary>
         /// Lower search-space boundary for control parameters.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return null; }
-        }
+        public override double[] LowerBound => null;
 
         /// <summary>
         /// Upper search-space boundary for control parameters.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return null; }
-        }
+        public override double[] UpperBound => null;
+
         #endregion
 
         #region Base-class overrides, Optimizer.

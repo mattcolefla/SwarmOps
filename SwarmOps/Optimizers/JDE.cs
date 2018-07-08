@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -235,58 +236,41 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name
-        {
-            get { return "JDE-" + DECrossover.Name(_crossover); }
-        }
+        public override string Name => "JDE-" + DECrossover.Name(_crossover);
 
         /// <summary>
         /// Number of control parameters for optimizer.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return 9; }
-        }
+        public override int Dimensionality => 9;
 
         string[] _parameterName = {"NP", "F_{init}", "F_l", "F_u", "tau_{F}", "CR_{init}", "CR_l", "CR_u", "tau_{CR}"};
 
         /// <summary>
         /// Control parameter names.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return _parameterName; }
-        }
+        public override string[] ParameterName => _parameterName;
 
         static readonly double[] _defaultParameters = { 8.0, 0.453133, 0.247631, 1.548331, 0.659707, 0.847650, 0.104456, 0.122205, 0.875351 };
 
         /// <summary>
         /// Default control parameters.
         /// </summary>
-        public override double[] DefaultParameters
-        {
-            get { return _defaultParameters; }
-        }
+        public override double[] DefaultParameters => _defaultParameters;
 
         static readonly double[] _lowerBound = { 4, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         /// <summary>
         /// Lower search-space boundary for control parameters.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return _lowerBound; }
-        }
+        public override double[] LowerBound => _lowerBound;
 
         static readonly double[] _upperBound = { 200, 2.0, 2.0, 2.0, 1, 1, 1, 1, 1 };
 
         /// <summary>
         /// Upper search-space boundary for control parameters.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return _upperBound; }
-        }
+        public override double[] UpperBound => _upperBound;
+
         #endregion
 
         #region Base-class overrides, Optimizer.

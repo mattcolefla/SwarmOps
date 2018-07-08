@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -31,19 +32,13 @@ namespace SwarmOps
         /// <summary>
         /// Return problem-name.
         /// </summary>
-        public override string Name
-        {
-            get { return "RepeatMin(" + Optimizer.Name + ")"; }
-        }
+        public override string Name => string.Intern("RepeatMin(") + Optimizer.Name + string.Intern(")");
 
         /// <summary>
         /// Return minimum fitness possible. This is the same as
         /// the minimum fitness of the Optimizer in question.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return Optimizer.MinFitness; }
-        }
+        public override double MinFitness => Optimizer.MinFitness;
 
         /// <summary>
         /// Compute the fitness by repeating a number of optimization runs

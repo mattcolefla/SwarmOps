@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SwarmOps")]
 [assembly: AssemblyDescription("Numeric and Heuristic Optimization")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hvass Laboratories")]
+[assembly: AssemblyCompany("Hvass Laboratories and Evolved AI Solutions")]
 [assembly: AssemblyProduct("SwarmOps")]
-[assembly: AssemblyCopyright("Copyright © Magnus Erik Hvass Pedersen 2011")]
+[assembly: AssemblyCopyright("Copyright © Magnus Erik Hvass Pedersen 2011 and Matt R. Cole 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("89d32dbf-d74d-4033-bf86-e68689ca1d23")]
+[assembly: Guid("9DA6929D-AA0D-402C-A6C5-EF3AAEC0601C")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.1.0.0")]
-[assembly: AssemblyFileVersion("3.1.0.0")]
+[assembly: AssemblyVersion("4.0.0.0")]
+[assembly: AssemblyFileVersion("4.0.0.0")]
+[assembly: NeutralResourcesLanguage("en-US")]
+

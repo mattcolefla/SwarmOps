@@ -13,7 +13,10 @@ using SwarmOps.Problems;
 
 namespace TestBenchmarks
 {
+    using System.Data.SqlTypes;
     using System.Linq;
+    using System.Runtime.InteropServices.ComTypes;
+    using NodaTime;
 
     /// <summary>
     /// Test an optimizer on various benchmark problems.
@@ -21,11 +24,10 @@ namespace TestBenchmarks
     class Program
     {
         // Create optimizer object.
-        static Optimizer Optimizer = new DE();
+        static readonly Optimizer Optimizer = new DE();
 
         // Control parameters for optimizer.
         static readonly double[] Parameters = Optimizer.DefaultParameters;
-        //static readonly double[] Parameters = PSO.Parameters.AllBenchmarks5Dim10000IterA;
 
         // Optimization settings.
         static readonly int NumRuns = 50;
@@ -82,7 +84,7 @@ namespace TestBenchmarks
             Statistics.Compute();
 
             // Output result-statistics.
-            Console.WriteLine("{0} & {1} & {2} & {3} & {4} & {5} & {6} & {7} & {8} \\\\",
+            Console.WriteLine("{0} = {1} - {2} = {3} = {4} = {5} = {6} = {7} = {8} \\\\",
                 problem.Name,
                 Tools.FormatNumber(Statistics.FitnessMean),
                 Tools.FormatNumber(Statistics.FitnessStdDev),
@@ -131,11 +133,11 @@ namespace TestBenchmarks
                 Console.WriteLine("Mangle search-space: No");
             }
             Console.WriteLine();
-            Console.WriteLine("Problem & Mean & Std.Dev. & Min & Q1 & Median & Q3 & Max & Feasible \\\\");
+            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible \\\\");
             Console.WriteLine("");
 
             // Starting-time.
-            DateTime t1 = DateTime.Now;
+            ZonedDateTime t1 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
 
 #if false
             //Optimize(new Ackley(Dim, NumIterations));
@@ -147,18 +149,20 @@ namespace TestBenchmarks
             //Optimize(new Step(Dim, NumIterations));
 #else
             // Optimize all benchmark problems.
-            foreach (var problem in Benchmarks.IDs.Select(benchmarkID => benchmarkID.CreateInstance(Dim, NumIterations)))
+            foreach (var problem in Benchmarks.IDs
+                .Select(benchmarkID => benchmarkID.CreateInstance(Dim, NumIterations)))
             {
                 // Optimize the problem.
                 Optimize(problem);
             }
 #endif
             // End-time.
-            DateTime t2 = DateTime.Now;
+            ZonedDateTime t2 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
+            Duration diff = t2.ToInstant() - t1.ToInstant();
 
             // Output time-usage.
             Console.WriteLine();
-            Console.WriteLine("Time usage: {0}", t2 - t1);
+            Console.WriteLine("Time usage: {0}", diff);
             Console.ReadKey();
         }
     }

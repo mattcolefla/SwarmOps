@@ -145,10 +145,7 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Gradient is not defined for mangled search-spaces.
         /// </summary>
-        public override bool HasGradient
-        {
-            get { return false; }
-        }
+        public override bool HasGradient => false;
 
         /// <summary>
         /// Compute the gradient of the fitness-function.

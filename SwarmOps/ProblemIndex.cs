@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -31,7 +32,6 @@ namespace SwarmOps
 
             int numProblems = problems.Count();
             double weight = 1.0 / numProblems;
-
             Index = new List<ProblemFitness>(numProblems);
 
             foreach (Problem problem in problems)
@@ -51,7 +51,6 @@ namespace SwarmOps
             Debug.Assert(weightedProblems.Length > 0);
 
             Index = new List<ProblemFitness>(weightedProblems.Length);
-
             double weightSum = weightedProblems.Sum(o => o.Weight);
 
             foreach (WeightedProblem weightedProblem in weightedProblems)
@@ -128,10 +127,8 @@ namespace SwarmOps
         /// <summary>
         /// Return the number of problems.
         /// </summary>
-        public int Count
-        {
-            get { return Index.Count; }
-        }
+        public int Count => Index.Count;
+
         #endregion
 
         #region Public methods.

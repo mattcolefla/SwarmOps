@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -15,7 +16,7 @@ namespace SwarmOps
     /// Wrapper for an optimizer providing statistics such as
     /// mean fitness achieved over a number of optimization runs,
     /// best results achieved, etc. Transparently supports the
-    /// same methods as the the optimizer itself, but stores the
+    /// same methods as the optimizer itself, but stores the
     /// optimization results so as to compute the statistics.
     /// </summary>
     public class Statistics : OptimizerWrapper
@@ -65,13 +66,7 @@ namespace SwarmOps
         /// <summary>
         /// Fraction of results that are feasible (satisfy constraints).
         /// </summary>
-        public double FeasibleFraction
-        {
-            get
-            {
-                return (double)CountFeasible / Count;
-            }
-        }
+        public double FeasibleFraction => (double)CountFeasible / Count;
 
         /// <summary>
         /// Optimization results stored for later computation of statistics.
@@ -108,13 +103,7 @@ namespace SwarmOps
         /// <summary>
         /// Parameters for best optimization result achieved.
         /// </summary>
-        public double[] BestParameters
-        {
-            get
-            {
-                return BestResult.Parameters;
-            }
-        }
+        public double[] BestParameters => BestResult.Parameters;
 
         /// <summary>
         /// Quartiles for fitness results.
@@ -128,18 +117,12 @@ namespace SwarmOps
         /// <summary>
         /// Fitness for best solution found.
         /// </summary>
-        public double? FitnessMin
-        {
-            get { return FitnessQuartiles.Min; }
-        }
+        public double? FitnessMin => FitnessQuartiles.Min;
 
         /// <summary>
         /// Fitness for worst solution found.
         /// </summary>
-        public double? FitnessMax
-        {
-            get { return FitnessQuartiles.Max; }
-        }
+        public double? FitnessMax => FitnessQuartiles.Max;
 
         /// <summary>
         /// Fitness mean or average for all optimization results.
@@ -171,18 +154,12 @@ namespace SwarmOps
         /// <summary>
         /// Lowest number of iterations used in a single optimization run.
         /// </summary>
-        public double? IterationsMin
-        {
-            get { return IterationsQuartiles.Min; }
-        }
+        public double? IterationsMin => IterationsQuartiles.Min;
 
         /// <summary>
         /// Highest number of iterations used in a single optimization run.
         /// </summary>
-        public double? IterationsMax
-        {
-            get { return IterationsQuartiles.Max; }
-        }
+        public double? IterationsMax => IterationsQuartiles.Max;
 
         /// <summary>
         /// Mean number of iterations used in optimization runs.
@@ -262,10 +239,7 @@ namespace SwarmOps
         /// <summary>
         /// Return the name of the problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "Statistics (" + Optimizer.Name + ")"; }
-        }
+        public override string Name => "Statistics (" + Optimizer.Name + ")";
 
         /// <summary>
         /// Perform one optimization run and return the best found solution.

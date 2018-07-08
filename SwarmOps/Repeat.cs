@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -61,50 +62,33 @@ namespace SwarmOps
         /// <summary>
         /// Return Name of Optimizer.
         /// </summary>
-        public override string Name
-        {
-            get { return Optimizer.Name; }
-        }
+        public override string Name => Optimizer.Name;
 
         /// <summary>
         /// Return LowerBound of Optimizer.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return Optimizer.LowerBound; }
-        }
+        public override double[] LowerBound => Optimizer.LowerBound;
 
         /// <summary>
         /// Return UpperBound of Optimizer.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return Optimizer.UpperBound; }
-        }
+        public override double[] UpperBound => Optimizer.UpperBound;
 
         /// <summary>
         /// Return LowerInit of Optimizer.
         /// </summary>
-        public override double[] LowerInit
-        {
-            get { return Optimizer.LowerInit; }
-        }
+        public override double[] LowerInit => Optimizer.LowerInit;
 
         /// <summary>
         /// Return UpperInit of Optimizer.
         /// </summary>
-        public override double[] UpperInit
-        {
-            get { return Optimizer.UpperInit; }
-        }
+        public override double[] UpperInit => Optimizer.UpperInit;
 
         /// <summary>
         /// Return Dimensionality of Optimizer.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return Optimizer.Dimensionality; }
-        }
+        public override int Dimensionality => Optimizer.Dimensionality;
+
         #endregion
     }
 }

@@ -91,10 +91,7 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Minimum possible fitness.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return 0; }
-        }
+        public override double MinFitness => 0;
 
         /// <summary>
         /// Compute and return fitness for the given parameters.

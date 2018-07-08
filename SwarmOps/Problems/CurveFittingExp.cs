@@ -78,87 +78,57 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "CurveFittingExp"; }
-        }
+        public override string Name => "CurveFittingExp";
 
         /// <summary>
         /// Dimensionality of the optimization problem.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return 2; }
-        }
+        public override int Dimensionality => 2;
 
         /// <summary>
         /// Threshold for an acceptable fitness value.
         /// </summary>
-        public override double AcceptableFitness
-        {
-            get
-            {
-                return 0.001;
-            }
-        }
+        public override double AcceptableFitness => 0.001;
 
         double[] _lowerBound;
 
         /// <summary>
         /// Lower boundary for the search-space.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return _lowerBound; }
-        }
+        public override double[] LowerBound => _lowerBound;
 
         double[] _upperBound;
 
         /// <summary>
         /// Upper boundary for the search-space.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return _upperBound; }
-        }
+        public override double[] UpperBound => _upperBound;
 
         double[] _lowerInit;
 
         /// <summary>
         /// Lower initialization boundary.
         /// </summary>
-        public override double[] LowerInit
-        {
-            get { return _lowerInit; }
-        }
+        public override double[] LowerInit => _lowerInit;
 
         double[] _upperInit;
 
         /// <summary>
         /// Upper initialization boundary.
         /// </summary>
-        public override double[] UpperInit
-        {
-            get { return _upperInit; }
-        }
+        public override double[] UpperInit => _upperInit;
 
         string[] _parameterName = { "A", "B" };
 
         /// <summary>
         /// Array with names of parameters.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return _parameterName; }
-        }
+        public override string[] ParameterName => _parameterName;
 
         /// <summary>
         /// Has the gradient has been implemented?
         /// </summary>
-        public override bool HasGradient
-        {
-            get { return true; }
-        }
+        public override bool HasGradient => true;
 
         /// <summary>
         /// Compute the gradient of the fitness-function.

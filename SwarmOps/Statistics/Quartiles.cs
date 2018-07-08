@@ -67,10 +67,7 @@ namespace SwarmOps
         /// <summary>
         /// Same as Median.
         /// </summary>
-        public double? Q2
-        {
-            get { return Median; }
-        }
+        public double? Q2 => Median;
 
         /// <summary>
         /// Third quartile, if between two elements the one

@@ -72,18 +72,13 @@ namespace SwarmOps
         /// <summary>
         /// Variance.
         /// </summary>
-        public double Variance
-        {
-            get { return Q / Count; }
-        }
+        public double Variance => Q / Count;
 
         /// <summary>
         /// Standard deviation.
         /// </summary>
-        public double StandardDeviation
-        {
-            get { return System.Math.Sqrt(Variance); }
-        }
+        public double StandardDeviation => System.Math.Sqrt(Variance);
+
         #endregion
 
         #region Public methods.

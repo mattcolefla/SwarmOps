@@ -54,10 +54,7 @@ namespace RandomOps
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "RanSystem"; }
-        }
+        public override string Name => "RanSystem";
 
         /// <summary>
         /// Draw a uniform random number in the exclusive range (0,1)

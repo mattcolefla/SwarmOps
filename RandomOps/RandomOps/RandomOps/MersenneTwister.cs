@@ -158,10 +158,7 @@ namespace RandomOps
         /// <summary>
         /// The maximum possible value returned by Rand().
         /// </summary>
-        public sealed override UInt32 RandMax
-        {
-            get { return UInt32.MaxValue; }
-        }
+        public sealed override UInt32 RandMax => UInt32.MaxValue;
 
         /// <summary>
         /// Seed with an integer.
@@ -233,10 +230,8 @@ namespace RandomOps
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "MersenneTwister19937"; }
-        }
+        public override string Name => "MersenneTwister19937";
+
         #endregion
     }
 }

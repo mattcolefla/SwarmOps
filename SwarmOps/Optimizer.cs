@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -96,10 +97,7 @@ namespace SwarmOps
         /// <summary>
         /// Return MinFitness for the Problem.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return Problem.MinFitness; }
-        }
+        public override double MinFitness => Problem.MinFitness;
 
         /// <summary>
         /// Compute fitness by performing one optimization run.
@@ -123,10 +121,7 @@ namespace SwarmOps
         /// <param name="fitness">Best-found fitness for this optimization run.</param>
         protected void Trace(int iteration, double fitness, bool feasible)
         {
-            if (FitnessTrace != null)
-            {
-                FitnessTrace.Add(iteration, fitness, feasible);
-            }
+            FitnessTrace?.Add(iteration, fitness, feasible);
         }
         #endregion
     }

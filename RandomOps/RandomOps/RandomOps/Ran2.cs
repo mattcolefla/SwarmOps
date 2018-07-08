@@ -151,10 +151,7 @@ namespace RandomOps
         /// <summary>
         /// The maximum possible value returned by Rand().
         /// </summary>
-        public sealed override Int32 RandMax
-        {
-            get { return IM0 - 1; }
-        }
+        public sealed override Int32 RandMax => IM0 - 1;
 
         /// <summary>
         /// Seed with an integer.
@@ -204,10 +201,8 @@ namespace RandomOps
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "Ran2"; }
-        }
+        public override string Name => "Ran2";
+
         #endregion
     }
 }

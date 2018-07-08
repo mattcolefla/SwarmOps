@@ -48,18 +48,13 @@ namespace RandomOps.ThreadSafe
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "ThreadSafe.CMWC4096"; }
-        }
+        public override string Name => "ThreadSafe.CMWC4096";
 
         /// <summary>
         /// Thread-local PRNG.
         /// </summary>
-        public override Random ThreadRNG
-        {
-            get { return _threadRNG.Value; }
-        }
+        public override Random ThreadRNG => _threadRNG.Value;
+
         #endregion
     }
 }

@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -135,20 +136,15 @@ namespace SwarmOps.Optimizers.Parallel
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name
-        {
-            get { return "DE-" + CrossoverName + DitherName + "-Par" + NumAgentsMultiple; }
-        }
+        public override string Name => "DE-" + CrossoverName + DitherName + "-Par" + NumAgentsMultiple;
 
         static readonly double[] _defaultParametersDither = { 9.0, 0.5749, 1.1862, 2.1832 };
 
         /// <summary>
         /// Default control parameters.
         /// </summary>
-        public override double[] DefaultParameters
-        {
-            get { return (_dither == DitherVariant.None) ? (Parameters.Rand1Bin.NoDither.AllBenchmarks30Dim60000Iter) : (_defaultParametersDither); }
-        }
+        public override double[] DefaultParameters => (_dither == DitherVariant.None) ? (Parameters.Rand1Bin.NoDither.AllBenchmarks30Dim60000Iter) : (_defaultParametersDither);
+
         #endregion
 
         #region Base-class overrides, Optimizer.

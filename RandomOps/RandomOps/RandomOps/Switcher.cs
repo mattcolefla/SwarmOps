@@ -41,10 +41,7 @@ namespace RandomOps
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "Switcher-" + base.Name; }
-        }
+        public override string Name => "Switcher-" + base.Name;
 
         /// <summary>
         /// Determine which RNG in RandMulti to use.

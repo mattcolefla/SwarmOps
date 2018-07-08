@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -76,10 +77,7 @@ namespace SwarmOps
         /// <summary>
         /// Array with names of parameters.
         /// </summary>
-        public virtual string[] ParameterName
-        {
-            get { return null; }
-        }
+        public virtual string[] ParameterName => null;
 
         /// <summary>
         /// Lower search-space boundary.
@@ -101,27 +99,18 @@ namespace SwarmOps
         /// Lower initialization boundary,
         /// if different from search-space boundary.
         /// </summary>
-        public virtual double[] LowerInit
-        {
-            get { return LowerBound; }
-        }
+        public virtual double[] LowerInit => LowerBound;
 
         /// <summary>
         /// Upper initialization boundary,
         /// if different from search-space boundary.
         /// </summary>
-        public virtual double[] UpperInit
-        {
-            get { return UpperBound; }
-        }
+        public virtual double[] UpperInit => UpperBound;
 
         /// <summary>
         /// Maximum (i.e. worst) fitness possible.
         /// </summary>
-        public virtual double MaxFitness
-        {
-            get { return double.MaxValue; }
-        }
+        public virtual double MaxFitness => double.MaxValue;
 
         /// <summary>
         /// Minimum (i.e. best) fitness possible. This is
@@ -138,10 +127,7 @@ namespace SwarmOps
         /// <summary>
         /// Threshold for an acceptable fitness value.
         /// </summary>
-        public virtual double AcceptableFitness
-        {
-            get { return MinFitness; }
-        }
+        public virtual double AcceptableFitness => MinFitness;
 
         /// <summary>
         /// Return dimensionality of the problem, that is, the number
@@ -155,10 +141,8 @@ namespace SwarmOps
         /// <summary>
         /// Has the gradient has been implemented?
         /// </summary>
-        public virtual bool HasGradient
-        {
-            get { return false; }
-        }
+        public virtual bool HasGradient => false;
+
         #endregion
 
         #region Public methods, override these.
@@ -198,18 +182,8 @@ namespace SwarmOps
         /// <param name="oldFeasible">Feasibility of new candidate solution.</param>
         public virtual double Fitness(double[] parameters, double fitnessLimit, bool oldFeasible, bool newFeasible)
         {
-            double fitness;
-
-            if (Tools.BetterFeasible(oldFeasible, newFeasible))
-            {
-                fitness = Fitness(parameters, fitnessLimit);
-            }
-            else
-            {
-                fitness = Fitness(parameters);
-            }
-
-            return fitness;
+            return Tools.BetterFeasible(oldFeasible, newFeasible) 
+                ? Fitness(parameters, fitnessLimit) : Fitness(parameters);
         }
 
 
@@ -239,7 +213,7 @@ namespace SwarmOps
         }
 
         /// <summary>
-        /// Enforce constraints and evaluate feasiblity.
+        /// Enforce constraints and evaluate feasibility.
         /// </summary>
         /// <remarks>
         /// If you do not wish to enforce constraints you should make

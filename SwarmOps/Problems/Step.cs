@@ -28,18 +28,12 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "Step"; }
-        }
+        public override string Name => "Step";
 
         /// <summary>
         /// Minimum possible fitness.
         /// </summary>
-        public override double MinFitness
-        {
-            get { return 0; }
-        }
+        public override double MinFitness => 0;
 
         /// <summary>
         /// Compute and return fitness for the given parameters.

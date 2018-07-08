@@ -96,18 +96,12 @@ namespace RandomOps
         /// <summary>
         /// The maximum possible value returned by Rand().
         /// </summary>
-        public sealed override UInt32 RandMax
-        {
-            get { return UInt32.MaxValue; }
-        }
+        public sealed override UInt32 RandMax => UInt32.MaxValue;
 
         /// <summary>
         /// Length of seed-array.
         /// </summary>
-        public sealed override int SeedLength
-        {
-            get { return 5; }
-        }
+        public sealed override int SeedLength => 5;
 
         /// <summary>
         /// Seed with an array.
@@ -130,10 +124,8 @@ namespace RandomOps
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "XorShift"; }
-        }
+        public override string Name => "XorShift";
+
         #endregion
     }
 }

@@ -77,10 +77,7 @@ namespace RandomOps.ThreadSafe
         /// <summary>
         /// Name of the RNG.
         /// </summary>
-        public override string Name
-        {
-            get { return "ThreadSafe(" + _rand.Name + ")"; }
-        }
+        public override string Name => "ThreadSafe(" + _rand.Name + ")";
 
         /// <summary>
         /// Thread-safe wrapper for Uniform(). Note that derived methods

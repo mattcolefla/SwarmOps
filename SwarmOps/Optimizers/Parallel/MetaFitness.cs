@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -45,10 +46,7 @@ namespace SwarmOps.Optimizers.Parallel
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name
-        {
-            get { return "MetaFitnessParallel (" + Optimizer.Name + ")"; }
-        }
+        public override string Name => "MetaFitnessParallel (" + Optimizer.Name + ")";
 
         /// <summary>
         /// Compute the meta-fitness measure by passing the

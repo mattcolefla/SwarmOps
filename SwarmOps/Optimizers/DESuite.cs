@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -111,13 +112,7 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of crossover operator.
         /// </summary>
-        protected string CrossoverName
-        {
-            get
-            {
-                return DECrossover.Name(_crossover);
-            }
-        }
+        protected string CrossoverName => DECrossover.Name(_crossover);
 
         /// <summary>
         /// Name of dither variant.
@@ -407,20 +402,14 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name
-        {
-            get { return "DE-" + CrossoverName + DitherName; }
-        }
+        public override string Name => "DE-" + CrossoverName + DitherName;
 
         int _dimensionality;
 
         /// <summary>
         /// Number of control parameters for optimizer.
         /// </summary>
-        public override int Dimensionality
-        {
-            get { return _dimensionality; }
-        }
+        public override int Dimensionality => _dimensionality;
 
         string[] _parameterName = { "NP", "CR", "F" };
         string[] _parameterNameDither = { "NP", "CR", "FMid", "FRange" };
@@ -428,10 +417,7 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Control parameter names.
         /// </summary>
-        public override string[] ParameterName
-        {
-            get { return (_dither == DitherVariant.None) ? (_parameterName) : (_parameterNameDither); }
-        }
+        public override string[] ParameterName => (_dither == DitherVariant.None) ? (_parameterName) : (_parameterNameDither);
 
         static readonly double[] _defaultParameters = { 37.0, 0.496, 0.5313 };
         static readonly double[] _defaultParametersDither = { 9.0, 0.5749, 1.1862, 2.1832 };
@@ -439,10 +425,7 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Default control parameters.
         /// </summary>
-        public override double[] DefaultParameters
-        {
-            get { return (_dither == DitherVariant.None) ? (_defaultParameters) : (_defaultParametersDither); }
-        }
+        public override double[] DefaultParameters => (_dither == DitherVariant.None) ? (_defaultParameters) : (_defaultParametersDither);
 
         static readonly double[] _lowerBound = { 4, 0, 0 };
         static readonly double[] _lowerBoundDither = { 4, 0, 0, 0 };
@@ -450,10 +433,7 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Lower search-space boundary for control parameters.
         /// </summary>
-        public override double[] LowerBound
-        {
-            get { return (_dither == DitherVariant.None) ? (_lowerBound) : (_lowerBoundDither); }
-        }
+        public override double[] LowerBound => (_dither == DitherVariant.None) ? (_lowerBound) : (_lowerBoundDither);
 
         static readonly double[] _upperBound = { 200, 1, 2.0 };
         static readonly double[] _upperBoundDither = { 200, 1, 2.0, 3.0 };
@@ -461,10 +441,8 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Upper search-space boundary for control parameters.
         /// </summary>
-        public override double[] UpperBound
-        {
-            get { return (_dither == DitherVariant.None) ? (_upperBound) : (_upperBoundDither); }
-        }
+        public override double[] UpperBound => (_dither == DitherVariant.None) ? (_upperBound) : (_upperBoundDither);
+
         #endregion
 
         #region Base-class overrides, Optimizer.

@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -12,7 +13,7 @@ namespace SwarmOps.Optimizers
     /// <summary>
     /// Differential Evolution (DE) optimizer originally
     /// due to Storner and Price (1). This simple and efficient
-    /// variant is based on the The Joker variant by Pedersen et
+    /// variant is based on The Joker variant by Pedersen et
     /// al. (2). It has been found to be very versatile and works
     /// well on a wide range of optimization problems, but may
     /// require tuning (or meta-optimization) of its parameters.
