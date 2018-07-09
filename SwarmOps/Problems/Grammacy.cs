@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Grammacy : Benchmark
+    public class Grammacy : BenchmarkProblem
     {
         #region Constructors.
 

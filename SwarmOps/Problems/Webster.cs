@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Webster : Benchmark
+    public class Webster : BenchmarkProblem
     {
         #region Constructors.
 

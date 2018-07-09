@@ -30,6 +30,7 @@ namespace SwarmOps.Problems
             Bumps,
             CrossInTray,
             CurrinExponential,
+            DoubleDip,
             DropWave,
             Easom,
             EggHolder,
@@ -49,6 +50,7 @@ namespace SwarmOps.Problems
             Mccormick,
             Michaelwicz,
             OO,
+            Peaks,
             Penalized1, 
             Penalized2,
             Perm2,
@@ -84,6 +86,7 @@ namespace SwarmOps.Problems
             ID.Bumps,
             ID.CrossInTray,
             ID.CurrinExponential,
+            ID.DoubleDip,
             ID.DropWave,
             ID.Easom,
             ID.EggHolder,
@@ -103,6 +106,7 @@ namespace SwarmOps.Problems
             ID.Mccormick,
             ID.Michaelwicz,
             ID.OO,
+            ID.Peaks,
             ID.Penalized1, 
             ID.Penalized2, 
             ID.Perm2,
@@ -126,176 +130,181 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Create a new instance of a benchmark problem.
         /// </summary>
-        /// <param name="id">Benchmark problem ID.</param>
+        /// <param name="id">BenchmarkProblem problem ID.</param>
         /// <param name="dimensionality">Dimensionality of problem.</param>
         /// <returns></returns>
-        public static Benchmark CreateInstance(this ID id, int dimensionality, int maxIterations)
+        public static BenchmarkProblem CreateInstance(this ID id, int dimensionality, int maxIterations)
         {
-            Benchmark benchmark;
+            BenchmarkProblem benchmarkProblem;
 
             switch (id)
             {
                 case ID.Ackley:
-                    benchmark = new Ackley(dimensionality, maxIterations);
+                    benchmarkProblem = new Ackley(dimensionality, maxIterations);
                     break;
 
                 case ID.Griewank:
-                    benchmark = new Griewank(dimensionality, maxIterations);
+                    benchmarkProblem = new Griewank(dimensionality, maxIterations);
                     break;
 
                 case ID.Penalized1:
-                    benchmark = new Penalized1(dimensionality, maxIterations);
+                    benchmarkProblem = new Penalized1(dimensionality, maxIterations);
                     break;
 
                 case ID.Penalized2:
-                    benchmark = new Penalized2(dimensionality, maxIterations);
+                    benchmarkProblem = new Penalized2(dimensionality, maxIterations);
                     break;
 
                 case ID.QuarticNoise:
-                    benchmark = new QuarticNoise(dimensionality, maxIterations);
+                    benchmarkProblem = new QuarticNoise(dimensionality, maxIterations);
                     break;
 
                 case ID.Rastrigin:
-                    benchmark = new Rastrigin(dimensionality, maxIterations);
+                    benchmarkProblem = new Rastrigin(dimensionality, maxIterations);
                     break;
 
                 case ID.Rosenbrock:
-                    benchmark = new Rosenbrock(dimensionality, maxIterations);
+                    benchmarkProblem = new Rosenbrock(dimensionality, maxIterations);
                     break;
 
                 case ID.Schwefel12:
-                    benchmark = new Schwefel12(dimensionality, maxIterations);
+                    benchmarkProblem = new Schwefel12(dimensionality, maxIterations);
                     break;
 
                 case ID.Schwefel221:
-                    benchmark = new Schwefel221(dimensionality, maxIterations);
+                    benchmarkProblem = new Schwefel221(dimensionality, maxIterations);
                     break;
 
                 case ID.Schwefel222:
-                    benchmark = new Schwefel222(dimensionality, maxIterations);
+                    benchmarkProblem = new Schwefel222(dimensionality, maxIterations);
                     break;
 
                 case ID.Sphere:
-                    benchmark = new Sphere(dimensionality, maxIterations);
+                    benchmarkProblem = new Sphere(dimensionality, maxIterations);
                     break;
 
                 case ID.Step:
-                    benchmark = new Step(dimensionality, maxIterations);
+                    benchmarkProblem = new Step(dimensionality, maxIterations);
                     break;
 
                 // MRC
                 case ID.Lim:
-                    benchmark = new Lim(dimensionality, maxIterations);
+                    benchmarkProblem = new Lim(dimensionality, maxIterations);
                     break;
                 case ID.Trid:
-                    benchmark = new Trid(dimensionality, maxIterations);
+                    benchmarkProblem = new Trid(dimensionality, maxIterations);
                     break;
                 case ID.Shubert:
-                    benchmark = new Shubert(dimensionality, maxIterations);
+                    benchmarkProblem = new Shubert(dimensionality, maxIterations);
                     break;
                 case ID.Matyas:
-                    benchmark = new Matyas(dimensionality, maxIterations);
+                    benchmarkProblem = new Matyas(dimensionality, maxIterations);
                     break;
                 case ID.Branin:
-                    benchmark = new Branin(dimensionality, maxIterations);
+                    benchmarkProblem = new Branin(dimensionality, maxIterations);
                     break;
                 case ID.Franke:
-                    benchmark = new Franke(dimensionality, maxIterations);
+                    benchmarkProblem = new Franke(dimensionality, maxIterations);
                     break;
                 case ID.Grammacy:
-                    benchmark = new Grammacy(dimensionality, maxIterations);
+                    benchmarkProblem = new Grammacy(dimensionality, maxIterations);
                     break;
                 case ID.OO:
-                    benchmark = new OO(dimensionality, maxIterations);
+                    benchmarkProblem = new OO(dimensionality, maxIterations);
                     break;
                 case ID.Webster:
-                    benchmark = new Webster(dimensionality, maxIterations);
+                    benchmarkProblem = new Webster(dimensionality, maxIterations);
                     break;
                 case ID.CurrinExponential:
-                    benchmark = new CurrinExponential(dimensionality, maxIterations);
+                    benchmarkProblem = new CurrinExponential(dimensionality, maxIterations);
                     break;
                 case ID.Adjiman:
-                    benchmark = new Adjiman(dimensionality, maxIterations);
+                    benchmarkProblem = new Adjiman(dimensionality, maxIterations);
                     break;
                 case ID.BartelsConn:
-                    benchmark = new BartelsConn(dimensionality, maxIterations);
+                    benchmarkProblem = new BartelsConn(dimensionality, maxIterations);
                     break;
                 case ID.Bird:
-                    benchmark = new Bird(dimensionality, maxIterations);
+                    benchmarkProblem = new Bird(dimensionality, maxIterations);
                     break;
                 case ID.Himmelblau:
-                    benchmark = new Himmelblau(dimensionality, maxIterations);
+                    benchmarkProblem = new Himmelblau(dimensionality, maxIterations);
                     break;
                 case ID.Perm2:
-                    benchmark = new Perm2(dimensionality, maxIterations);
+                    benchmarkProblem = new Perm2(dimensionality, maxIterations);
                     break;
                 case ID.Schaffer:
-                    benchmark = new Schaffer(dimensionality, maxIterations);
+                    benchmarkProblem = new Schaffer(dimensionality, maxIterations);
                     break;
                 case ID.Michaelwicz:
-                    benchmark = new Michaelwicz(dimensionality, maxIterations);
+                    benchmarkProblem = new Michaelwicz(dimensionality, maxIterations);
                     break;
                 case ID.Easom:
-                    benchmark = new Easom(dimensionality, maxIterations);
+                    benchmarkProblem = new Easom(dimensionality, maxIterations);
                     break;
                 case ID.SixHumpCamel:
-                    benchmark = new SixHumpCamel(dimensionality, maxIterations);
+                    benchmarkProblem = new SixHumpCamel(dimensionality, maxIterations);
                     break;
                 case ID.Levy:
-                    benchmark = new Levy(dimensionality, maxIterations);
+                    benchmarkProblem = new Levy(dimensionality, maxIterations);
                     break;
                 case ID.Mccormick:
-                    benchmark = new Mccormick(dimensionality, maxIterations);
+                    benchmarkProblem = new Mccormick(dimensionality, maxIterations);
                     break;
                 case ID.Levy13:
-                    benchmark = new Levy13(dimensionality, maxIterations);
+                    benchmarkProblem = new Levy13(dimensionality, maxIterations);
                     break;
                 case ID.HolderTable:
-                    benchmark = new HolderTable(dimensionality, maxIterations);
+                    benchmarkProblem = new HolderTable(dimensionality, maxIterations);
                     break;
                 case ID.EggHolder:
-                    benchmark = new EggHolder(dimensionality, maxIterations);
+                    benchmarkProblem = new EggHolder(dimensionality, maxIterations);
                     break;
                 case ID.DropWave:
-                    benchmark = new DropWave(dimensionality, maxIterations);
+                    benchmarkProblem = new DropWave(dimensionality, maxIterations);
                     break;
                 case ID.CrossInTray:
-                    benchmark = new CrossInTray(dimensionality, maxIterations);
+                    benchmarkProblem = new CrossInTray(dimensionality, maxIterations);
                     break;
                 case ID.Bukin:
-                    benchmark = new Bukin(dimensionality, maxIterations);
+                    benchmarkProblem = new Bukin(dimensionality, maxIterations);
                     break;
                 case ID.RotatedHyperEllipsoid:
-                    benchmark = new RotatedHyperEllipsoid(dimensionality, maxIterations);
+                    benchmarkProblem = new RotatedHyperEllipsoid(dimensionality, maxIterations);
                     break;
                 case ID.SumOfSquares:
-                    benchmark = new SumOfSquares(dimensionality, maxIterations);
+                    benchmarkProblem = new SumOfSquares(dimensionality, maxIterations);
                     break;
                 case ID.Beales:
-                    benchmark = new Beales(dimensionality, maxIterations);
+                    benchmarkProblem = new Beales(dimensionality, maxIterations);
                     break;
                 case ID.FitnessTest:
-                    benchmark = new FitnessTest(dimensionality, maxIterations);
+                    benchmarkProblem = new FitnessTest(dimensionality, maxIterations);
                     break;
                 case ID.ManyPeaks:
-                    benchmark = new ManyPeaks(dimensionality, maxIterations);
+                    benchmarkProblem = new ManyPeaks(dimensionality, maxIterations);
                     break;
                 case ID.Hole:
-                    benchmark = new Hole(dimensionality, maxIterations);
+                    benchmarkProblem = new Hole(dimensionality, maxIterations);
                     break;
                 case ID.GoldsteinPrice:
-                    benchmark = new GoldsteinPrice(dimensionality, maxIterations);
+                    benchmarkProblem = new GoldsteinPrice(dimensionality, maxIterations);
                     break;
                 case ID.Bumps:
-                    benchmark = new Bumps(dimensionality, maxIterations);
+                    benchmarkProblem = new Bumps(dimensionality, maxIterations);
+                    break;
+                case ID.Peaks:
+                    benchmarkProblem = new Peaks(dimensionality, maxIterations);
+                    break;
+                case ID.DoubleDip:
+                    benchmarkProblem = new DoubleDip(dimensionality, maxIterations);
                     break;
 
-                    
                 default:
                     throw new ArgumentException();
             }
 
-            return benchmark;
+            return benchmarkProblem;
         }
     }
 }

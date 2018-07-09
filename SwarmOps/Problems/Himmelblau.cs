@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Himmelblau : Benchmark
+    public class Himmelblau : BenchmarkProblem
     {
         #region Constructors.
 

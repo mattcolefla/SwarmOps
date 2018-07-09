@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class SumOfSquares : Benchmark
+    public class SumOfSquares : BenchmarkProblem
     {
         #region Constructors.
 

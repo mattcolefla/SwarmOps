@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class DropWave : Benchmark
+    public class DropWave : BenchmarkProblem
     {
         #region Constructors.
 

@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class ManyPeaks : Benchmark
+    public class ManyPeaks : BenchmarkProblem
     {
         #region Constructors.
 

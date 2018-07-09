@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Levy : Benchmark
+    public class Levy : BenchmarkProblem
     {
         #region Constructors.
 

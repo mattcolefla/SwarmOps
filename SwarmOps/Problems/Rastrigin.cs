@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Rastrigin benchmark problem.
     /// </summary>
-    public class Rastrigin : Benchmark
+    public class Rastrigin : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

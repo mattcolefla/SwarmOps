@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class FitnessTest : Benchmark
+    public class FitnessTest : BenchmarkProblem
     {
         #region Constructors.
 

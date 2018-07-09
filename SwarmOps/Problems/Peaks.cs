@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class RotatedHyperEllipsoid : BenchmarkProblem
+    public class Peaks : BenchmarkProblem
     {
         #region Constructors.
 
@@ -17,8 +17,8 @@ namespace SwarmOps.Problems
         /// </summary>
         /// <param name="dimensionality">Dimensionality of the problem (e.g. 20)</param>
         /// <param name="maxIterations">Max optimization iterations to perform.</param>
-        public RotatedHyperEllipsoid(int dimensionality, int maxIterations)
-            : base(dimensionality, -66, 66, 0, 0, 100)
+        public Peaks(int dimensionality, int maxIterations)
+            : base(dimensionality, -10, 10, 0, 0, 100)
         {
         }
 
@@ -29,12 +29,12 @@ namespace SwarmOps.Problems
         /// <summary>
         /// Name of the optimization problem.
         /// </summary>
-        public override string Name => "RotatedHyperEllipsoid";
+        public override string Name => "Peaks";
 
         /// <summary>
         /// Minimum possible fitness.
         /// </summary>
-        public override double MinFitness => -66;
+        public override double MinFitness => -10;
 
         /// <summary>
         /// Has the gradient has been implemented?
@@ -48,21 +48,11 @@ namespace SwarmOps.Problems
         public override double Fitness(double[] x)
         {
             Debug.Assert(x != null && x.Length == Dimensionality);
-            int d = x.Length;
-            double outer = 0D;
-            double inner = 0D;
+            double z = 3 * (1 - x[0]) * (1 - x[0]) * Math.Exp(-x[0] * x[0]) - (x[1] + 1) * (x[1] + 1) -
+                10 * (x[0] / 5 - x[0] * x[0] * x[0] - x[1] * x[1] * x[1] * x[1] * x[1]) * Math.Exp(-x[0] * x[0] - x[1] * x[1]) -
+                1 / 3 * Math.Exp(-(x[0] + 1) * (x[0] + 1) - x[1] * x[1]);
+            return 1 - z;
 
-            for (int ii = 0; ii < d; ii++)
-            {
-                for (int jj = 0; jj < ii; jj++)
-                {
-                    double xj = x[jj];
-                    inner = Convert.ToInt32(inner + xj) ^ 2;
-                }
-                outer = outer + inner;
-            }
-
-            return outer;
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Step benchmark problem.
     /// </summary>
-    public class Step : Benchmark
+    public class Step : BenchmarkProblem
     {
         /// <summary>
         /// Construct the object.

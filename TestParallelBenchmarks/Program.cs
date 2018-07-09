@@ -113,7 +113,7 @@ namespace TestParallelBenchmarks
             Globals.ParallelOptions.MaxDegreeOfParallelism = 8;
 
             // Output optimization settings.
-            Console.WriteLine("Benchmark-tests. (Parallel)");
+            Console.WriteLine("BenchmarkProblem-tests. (Parallel)");
             Console.WriteLine("Optimizer: {0}", Optimizer.Name);
             Console.WriteLine("Using following parameters:");
             Tools.PrintParameters(Optimizer, Parameters);
@@ -184,7 +184,7 @@ namespace TestParallelBenchmarks
             Optimize(new DropWave(Dim, NumIterations));
             Optimize(new CrossInTray(Dim, NumIterations));
  
-            // Benchmark problem using Globals.Random (see note above.)
+            // BenchmarkProblem problem using Globals.Random (see note above.)
             //Optimize(new QuarticNoise(Dim, NumIterations));
 
             // End-time.

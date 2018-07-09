@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class EggHolder : Benchmark
+    public class EggHolder : BenchmarkProblem
     {
         #region Constructors.
 

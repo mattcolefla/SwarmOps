@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Easom : Benchmark
+    public class Easom : BenchmarkProblem
     {
         #region Constructors.
 

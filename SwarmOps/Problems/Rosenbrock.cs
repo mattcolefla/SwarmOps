@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Rosenbrock benchmark problem.
     /// </summary>
-    public class Rosenbrock : Benchmark
+    public class Rosenbrock : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

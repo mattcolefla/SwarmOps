@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Ackley benchmark problem.
     /// </summary>
-    public class Ackley : Benchmark
+    public class Ackley : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

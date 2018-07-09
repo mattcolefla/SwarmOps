@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Mccormick : Benchmark
+    public class Mccormick : BenchmarkProblem
     {
         #region Constructors.
 

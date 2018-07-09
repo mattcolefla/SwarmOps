@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class CurrinExponential : Benchmark
+    public class CurrinExponential : BenchmarkProblem
     {
         #region Constructors.
 

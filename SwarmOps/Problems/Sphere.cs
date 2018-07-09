@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Sphere benchmark problem.
     /// </summary>
-    public class Sphere : Benchmark
+    public class Sphere : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

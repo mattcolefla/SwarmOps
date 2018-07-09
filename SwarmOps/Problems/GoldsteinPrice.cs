@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class GoldsteinPrice : Benchmark
+    public class GoldsteinPrice : BenchmarkProblem
     {
         #region Constructors.
 

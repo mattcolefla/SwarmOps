@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Adjiman : Benchmark
+    public class Adjiman : BenchmarkProblem
     {
         #region Constructors.
 

@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class HolderTable : Benchmark
+    public class HolderTable : BenchmarkProblem
     {
         #region Constructors.
 

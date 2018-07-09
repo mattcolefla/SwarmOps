@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Bukin : Benchmark
+    public class Bukin : BenchmarkProblem
     {
         #region Constructors.
 

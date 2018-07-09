@@ -86,6 +86,7 @@
     <Compile Include="Problems\Bumps.cs" />
     <Compile Include="Problems\CrossInTray.cs" />
     <Compile Include="Problems\CurrinExponential.cs" />
+    <Compile Include="Problems\DoubleDip.cs" />
     <Compile Include="Problems\DropWave.cs" />
     <Compile Include="Problems\Easom.cs" />
     <Compile Include="Problems\EggHolder.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Problems\Mccormick.cs" />
     <Compile Include="Problems\Michaelwicz.cs" />
     <Compile Include="Problems\OO.cs" />
+    <Compile Include="Problems\Peaks.cs" />
     <Compile Include="Problems\Perm2.cs" />
     <Compile Include="Problems\RotatedHyperEllipsoid.cs" />
     <Compile Include="Problems\Schaffer.cs" />
@@ -155,7 +157,7 @@
     <Compile Include="Optimizers\LUS.cs" />
     <Compile Include="Optimizer.cs" />
     <Compile Include="Problem.cs" />
-    <Compile Include="Problems\Benchmark.cs" />
+    <Compile Include="Problems\BenchmarkProblem.cs" />
     <Compile Include="Problems\Ackley.cs" />
     <Compile Include="Problems\Step.cs" />
     <Compile Include="Problems\Schwefel222.cs" />
@@ -203,6 +205,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\SwarmOpsCS4_0.pdf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

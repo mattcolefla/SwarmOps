@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Griewank benchmark problem.
     /// </summary>
-    public class Griewank : Benchmark
+    public class Griewank : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

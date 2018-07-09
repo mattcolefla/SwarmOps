@@ -10,7 +10,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Base-class for a benchmark optimization problem.
     /// </summary>
-    public abstract class Benchmark : Problem
+    public abstract class BenchmarkProblem : Problem
     {
         #region Constructors.
         /// <summary>
@@ -22,7 +22,7 @@ namespace SwarmOps.Problems
         /// <param name="lowerInit">Lower boundary for initialization.</param>
         /// <param name="upperInit">Upper boundary for initialization.</param>
         /// <param name="maxIterations">Max optimization iterations to perform.</param>
-        public Benchmark(
+        public BenchmarkProblem(
             int dimensionality,
             double lowerBound,
             double upperBound,

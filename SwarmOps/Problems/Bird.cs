@@ -8,7 +8,7 @@ namespace SwarmOps.Problems
 {
     using System.Diagnostics;
 
-    public class Bird : Benchmark
+    public class Bird : BenchmarkProblem
     {
         #region Constructors.
 

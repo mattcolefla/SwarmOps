@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Quartic Noise benchmark problem.
     /// </summary>
-    public class QuarticNoise : Benchmark
+    public class QuarticNoise : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

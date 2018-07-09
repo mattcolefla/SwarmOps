@@ -12,7 +12,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Schwefel 2-21 benchmark problem.
     /// </summary>
-    public class Schwefel221 : Benchmark
+    public class Schwefel221 : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

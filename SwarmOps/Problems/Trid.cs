@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SwarmOps.Problems
 {
-    public class Trid : Benchmark
+    public class Trid : BenchmarkProblem
     {
         #region Constructors.
 

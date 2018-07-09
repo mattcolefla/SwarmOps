@@ -9,7 +9,7 @@ using SwarmOps.Problems;
 
 namespace SwarmOps.Problems
 {
-    public class Lim : Benchmark
+    public class Lim : BenchmarkProblem
     {
         #region Constructors.
 

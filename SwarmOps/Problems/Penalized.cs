@@ -10,7 +10,7 @@ namespace SwarmOps.Problems
     /// <summary>
     /// Helper-methods for Penalized benchmark problems.
     /// </summary>
-    public abstract class Penalized : Benchmark
+    public abstract class Penalized : BenchmarkProblem
     {
         #region Constructors.
         /// <summary>

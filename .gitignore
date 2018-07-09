@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/SwarmOpsCS3_0.pdf
+/SwarmOpsCS4_0.docx
+/SwarmOpsCS4_0.pdf

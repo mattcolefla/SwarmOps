@@ -10,17 +10,32 @@ using System;
 using SwarmOps;
 using SwarmOps.Optimizers;
 using SwarmOps.Problems;
+using Console = Colorful.Console;
 
 namespace TestBenchmarks
 {
+    using System.Collections.Generic;
     using System.Data.SqlTypes;
+    using System.Drawing;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.InteropServices.ComTypes;
+    using BenchmarkDotNet.Attributes;
+    using BenchmarkDotNet.Attributes.Columns;
+    using BenchmarkDotNet.Attributes.Exporters;
+    using BenchmarkDotNet.Attributes.Jobs;
+    using BenchmarkDotNet.Configs;
+    using BenchmarkDotNet.Jobs;
+    using BenchmarkDotNet.Running;
+    using BenchmarkDotNet.Validators;
+    using Colorful;
     using NodaTime;
 
     /// <summary>
     /// Test an optimizer on various benchmark problems.
     /// </summary>
+    [ClrJob(isBaseline: true), CoreJob]
+    [RankColumn, CsvMeasurementsExporter()]
     class Program
     {
         // Create optimizer object.
@@ -42,6 +57,7 @@ namespace TestBenchmarks
         static readonly double Diffusion = 0.01;       // E.g. 0.01
         static readonly double FitnessNoise = 0.01;    // E.g. 0.01
 
+       
         /// <summary>
         /// Optimize the given problem and output result-statistics.
         /// </summary>
@@ -83,8 +99,10 @@ namespace TestBenchmarks
             // Compute result-statistics.
             Statistics.Compute();
 
-            // Output result-statistics.
-            Console.WriteLine("{0} = {1} - {2} = {3} = {4} = {5} = {6} = {7} = {8} \\\\",
+            // Output result-statistics
+            string msg = "{0} = {1} - {2} = {3} = {4} = {5} = {6} = {7} = {8} \r\n";
+
+            Console.WriteFormatted(msg, Color.OrangeRed, Color.Green, 
                 problem.Name,
                 Tools.FormatNumber(Statistics.FitnessMean),
                 Tools.FormatNumber(Statistics.FitnessStdDev),
@@ -113,27 +131,27 @@ namespace TestBenchmarks
             Globals.Random = new RandomOps.MersenneTwister();
 
             // Output optimization settings.
-            Console.WriteLine("Benchmark-tests.");
-            Console.WriteLine("Optimizer: {0}", Optimizer.Name);
-            Console.WriteLine("Using following parameters:");
+            Console.WriteLine("BenchmarkProblem-tests.", Color.Yellow);
+            Console.WriteLine("Optimizer: {0}", Optimizer.Name, Color.Yellow);
+            Console.WriteLine("Using following parameters:", Color.Yellow);
             Tools.PrintParameters(Optimizer, Parameters);
-            Console.WriteLine("Number of runs per problem: {0}", NumRuns);
-            Console.WriteLine("Dimensionality: {0}", Dim);
-            Console.WriteLine("Dim-factor: {0}", DimFactor);
+            Console.WriteLine("Number of runs per problem: {0}", NumRuns, Color.Yellow);
+            Console.WriteLine("Dimensionality: {0}", Dim, Color.Yellow);
+            Console.WriteLine("Dim-factor: {0}", DimFactor, Color.Yellow);
             if (UseMangler)
             {
                 Console.WriteLine("Mangle search-space:");
-                Console.WriteLine("\tSpillover:     {0}", Spillover);
-                Console.WriteLine("\tDisplacement:  {0}", Displacement);
-                Console.WriteLine("\tDiffusion:     {0}", Diffusion);
-                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise);
+                Console.WriteLine("\tSpillover:     {0}", Spillover, Color.Red);
+                Console.WriteLine("\tDisplacement:  {0}", Displacement, Color.Red);
+                Console.WriteLine("\tDiffusion:     {0}", Diffusion, Color.Red);
+                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise, Color.Red);
             }
             else
             {
-                Console.WriteLine("Mangle search-space: No");
+                Console.WriteLine("Mangle search-space: No", Color.Yellow);
             }
             Console.WriteLine();
-            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible \\\\");
+            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible \\\\", Color.LightBlue);
             Console.WriteLine("");
 
             // Starting-time.
@@ -148,6 +166,13 @@ namespace TestBenchmarks
             Optimize(new Sphere(Dim, NumIterations));
             //Optimize(new Step(Dim, NumIterations));
 #else
+            List<Formatter> names = new List<Formatter>();
+            foreach (var problem in Benchmarks.IDs
+                .Select(benchmarkID => benchmarkID.CreateInstance(Dim, NumIterations)))
+            {
+                names.Add(new Formatter(problem.Name, Color.LightGreen));
+            }
+
             // Optimize all benchmark problems.
             foreach (var problem in Benchmarks.IDs
                 .Select(benchmarkID => benchmarkID.CreateInstance(Dim, NumIterations)))
@@ -162,7 +187,8 @@ namespace TestBenchmarks
 
             // Output time-usage.
             Console.WriteLine();
-            Console.WriteLine("Time usage: {0}", diff);
+            Console.WriteLine("Time usage: {0}", diff, Color.Yellow);
+            Console.WriteLine("Press any key to exit", Color.Yellow);
             Console.ReadKey();
         }
     }
