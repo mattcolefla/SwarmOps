@@ -4,6 +4,7 @@
 /// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole 
 /// ------------------------------------------------------
 
 namespace SwarmOps

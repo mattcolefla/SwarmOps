@@ -44,10 +44,7 @@ namespace SwarmOps.Extensions
         {
             double sumSquares = source.SumSquares(selector);
             double mean = source.Average(selector);
-
-            double stdDev = System.Math.Sqrt(sumSquares / source.Count() - mean * mean);
-
-            return stdDev;
+            return System.Math.Sqrt(sumSquares / source.Count() - mean * mean);
         }
     }
 }

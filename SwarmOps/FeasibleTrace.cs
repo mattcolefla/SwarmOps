@@ -53,9 +53,9 @@ namespace SwarmOps
         /// </summary>
         public void Clear()
         {
-            for (int i = 0; i < Trace.Length; i++)
+            foreach (var t in Trace)
             {
-                Trace[i].Clear();
+                t.Clear();
             }
         }
         #endregion
@@ -89,12 +89,7 @@ namespace SwarmOps
 
                 if (trace.Count > 0)
                 {
-                    double mean = trace.Mean;
-
-                    writer.WriteLine(
-                        "{0} {1}",
-                        Iteration(i),
-                        Tools.FormatNumber(mean));
+                    writer.WriteLine("{0} {1}", Iteration(i), Tools.FormatNumber(trace.Mean));
                 }
                 else
                 {

@@ -85,9 +85,9 @@ namespace SwarmOps
         /// </summary>
         public void Clear()
         {
-            for (int i = 0; i < Trace.Length; i++)
+            foreach (var t in Trace)
             {
-                Trace[i].Clear();
+                t.Clear();
             }
         }
         #endregion
@@ -122,14 +122,9 @@ namespace SwarmOps
                 {
                     quartiles.ComputeUnsortedInplace(traceArray);
 
-                    writer.WriteLine(
-                        "{0} {1} {2} {3} {4} {5}",
-                        Iteration(i),
-                        Tools.FormatNumber(quartiles.Min),
-                        Tools.FormatNumber(quartiles.Q1),
-                        Tools.FormatNumber(quartiles.Median),
-                        Tools.FormatNumber(quartiles.Q3),
-                        Tools.FormatNumber(quartiles.Max));
+                    writer.WriteLine("{0} {1} {2} {3} {4} {5}", Iteration(i), Tools.FormatNumber(quartiles.Min),
+                        Tools.FormatNumber(quartiles.Q1), Tools.FormatNumber(quartiles.Median),
+                        Tools.FormatNumber(quartiles.Q3), Tools.FormatNumber(quartiles.Max));
                 }
                 else
                 {

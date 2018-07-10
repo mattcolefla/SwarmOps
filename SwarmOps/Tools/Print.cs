@@ -3,13 +3,17 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole 
 /// ------------------------------------------------------
 
 using System;
 using System.Diagnostics;
+using Console = Colorful.Console;
 
 namespace SwarmOps
 {
+    using System.Drawing;
+
     public static partial class Tools
     {
         /// <summary>
@@ -31,12 +35,12 @@ namespace SwarmOps
                     double p = parameters[i];
                     string pStr = p.ToString("0.####", _cultureInfo);
 
-                    Console.WriteLine("\t{0} = {1}", parameterName, pStr);
+                    Console.WriteLine("\t{0} = {1}", parameterName, pStr, Color.LightBlue);
                 }
             }
             else
             {
-                Console.WriteLine("\tN/A");
+                Console.WriteLine("\tN/A", Color.Red);
             }
         }
 
@@ -47,13 +51,15 @@ namespace SwarmOps
         public static void PrintSolution(double[] parameters, double fitness, double fitnessLimit, bool oldFeasible, bool newFeasible, bool formatAsArray)
         {
             // Convert parameters to a string.
-            string parametersStr = (formatAsArray) ? (Tools.ArrayToString(parameters)) : (Tools.ArrayToStringRaw(parameters));
+            string parametersStr = (formatAsArray) ? (ArrayToString(parameters)) : (ArrayToStringRaw(parameters));
+
 
             Console.WriteLine("{0} \t{1} \t{2} {3}",
                 parametersStr,
-                Tools.FormatNumber(fitness),
+                FormatNumber(fitness),
                 (newFeasible) ? (1) : (0),
-                Tools.BetterFeasibleFitness(oldFeasible, newFeasible, fitnessLimit, fitness) ? ("***") : (""));
+                BetterFeasibleFitness(oldFeasible, newFeasible, fitnessLimit, fitness) ? ("***") : (""),
+                BetterFeasibleFitness(oldFeasible, newFeasible, fitnessLimit, fitness) ? Color.Green : Color.LightBlue);
 
             // Flush stdout, this is useful if piping the output and you wish
             // to study the the output before the entire optimization run is complete.

@@ -19,9 +19,7 @@ namespace SwarmOps
             Debug.Assert(range >= 0);
 
             // Pick a sample from within the bounded range.
-            double y = Globals.Random.Uniform(x - range, x + range);
-
-            return y;
+            return Globals.Random.Uniform(x - range, x + range);
         }
 
         /// <summary>
@@ -42,9 +40,7 @@ namespace SwarmOps
             u = System.Math.Min(x + range, upperBound);
 
             // Pick a sample from within the bounded range.
-            y = Globals.Random.Uniform(l, u);
-
-            return y;
+            return Globals.Random.Uniform(l, u);
         }
     }
 }

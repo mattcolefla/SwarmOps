@@ -11,9 +11,14 @@ using System.Collections.Generic;
 using SwarmOps;
 using SwarmOps.Problems;
 using SwarmOps.Optimizers;
+using Console = Colorful.Console;
+
 
 namespace TestMesh
 {
+    using System.Drawing;
+    using NodaTime;
+
     /// <summary>
     /// Compute a mesh of meta-fitness values showing how an
     /// optimizer performs when varying its control parameters.
@@ -65,8 +70,8 @@ namespace TestMesh
                 Mangle(new Schwefel12(Dim, NumIterations)),
                 //Mangle(new Schwefel221(Dim, NumIterations)),
                 //Mangle(new Schwefel222(Dim, NumIterations)),
-                //Mangle(new Sphere(Dim, NumIterations)),
-                //Mangle(new Step(Dim, NumIterations)),
+                Mangle(new Sphere(Dim, NumIterations)),
+                Mangle(new Step(Dim, NumIterations)),
             };
 
         // The meta-fitness consists of computing optimization performance
@@ -102,25 +107,25 @@ namespace TestMesh
             // Output settings.
             Console.WriteLine("Mesh of meta-fitness values using benchmark problems.");
             Console.WriteLine();
-            Console.WriteLine("Optimizer to compute mesh for: {0}", Optimizer.Name);
-            Console.WriteLine("Mesh, number of iterations per dimension: {0}", MeshNumIterationsPerDim);
-            Console.WriteLine("Number of benchmark problems: {0}", Problems.Length);
+            Console.WriteLine("Optimizer to compute mesh for: {0}", Optimizer.Name, Color.Yellow);
+            Console.WriteLine("Mesh, number of iterations per dimension: {0}", MeshNumIterationsPerDim, Color.Yellow);
+            Console.WriteLine("Number of benchmark problems: {0}", Problems.Length, Color.Yellow);
 
-            for (int i = 0; i < Problems.Length; i++)
+            foreach (var t in Problems)
             {
-                Console.WriteLine("\t{0}", Problems[i].Name);
+                Console.WriteLine("\t{0}", t.Name, Color.Yellow);
             }
 
-            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim);
-            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns);
-            Console.WriteLine("Number of iterations per run: {0}", NumIterations);
+            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim, Color.Yellow);
+            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns, Color.Yellow);
+            Console.WriteLine("Number of iterations per run: {0}", NumIterations, Color.Yellow);
             if (UseMangler)
             {
                 Console.WriteLine("Mangle search-space:");
-                Console.WriteLine("\tSpillover:     {0}", Spillover);
-                Console.WriteLine("\tDisplacement:  {0}", Displacement);
-                Console.WriteLine("\tDiffusion:     {0}", Diffusion);
-                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise);
+                Console.WriteLine("\tSpillover:     {0}", Spillover, Color.Yellow);
+                Console.WriteLine("\tDisplacement:  {0}", Displacement, Color.Yellow);
+                Console.WriteLine("\tDiffusion:     {0}", Diffusion, Color.Yellow);
+                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise, Color.Yellow);
             }
             else
             {
@@ -133,14 +138,16 @@ namespace TestMesh
             Console.WriteLine();
             Console.WriteLine("Mesh of meta-fitness values:");
 
-            // Start-time.
-            DateTime t1 = DateTime.Now;
+            // Starting-time.
+            ZonedDateTime t1 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
 
             // Perform the meta-optimization runs.
             double fitness = Statistics.Fitness(MetaParameters);
 
             // End-time.
-            DateTime t2 = DateTime.Now;
+            // End-time.
+            ZonedDateTime t2 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
+            Duration diff = t2.ToInstant() - t1.ToInstant();
 
             // Compute result-statistics.
             Statistics.Compute();
@@ -150,26 +157,28 @@ namespace TestMesh
 
             // Output results and statistics.
             Console.WriteLine();
-            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name);
+            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name, Color.Yellow);
             Tools.PrintParameters(Optimizer, bestParameters);
-            Console.WriteLine("Parameters written in array notation:");
-            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4));
-            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin));
+            Console.WriteLine("Parameters written in array notation:", Color.Yellow);
+            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4), Color.Yellow);
+            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin), Color.Yellow);
 
             // Output best found parameters.
             Console.WriteLine();
-            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity);
+            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity, Color.Yellow);
             foreach (Solution candidateSolution in LogSolutions.Log)
             {
                 Console.WriteLine("\t{0}\t{1}\t{2}",
                     Tools.ArrayToStringRaw(candidateSolution.Parameters, 4),
                     Tools.FormatNumber(candidateSolution.Fitness),
-                    (candidateSolution.Feasible) ? (1) : (0));
+                    (candidateSolution.Feasible) ? (1) : (0), Color.Green);
             }
 
             // Output time-usage.
             Console.WriteLine();
-            Console.WriteLine("Time usage: {0}", t2 - t1);
+            Console.WriteLine("Time usage: {0}", diff, Color.Yellow);
+            Console.WriteLine("Press any key to exit", Color.Yellow);
+            Console.ReadKey();
         }
     }
 }

@@ -159,14 +159,8 @@ namespace SwarmOps.Optimizers
         /// <param name="g">Best found point in mesh.</param>
         /// <param name="gFitness">Fitness of best found point.</param>
         /// <param name="gFeasible">Feasibility of best found point.</param>
-        void Recursive(
-            int curDim,
-            int numIterationsPerDim,
-            double[] delta,
-            ref double[] x,
-            ref double[] g,
-            ref double gFitness,
-            ref bool gFeasible)
+        void Recursive(int curDim, int numIterationsPerDim, double[] delta, ref double[] x, ref double[] g,
+            ref double gFitness, ref bool gFeasible)
         {
             // Get problem-context.
             double[] lowerBound = Problem.LowerBound;
@@ -212,14 +206,8 @@ namespace SwarmOps.Optimizers
         /// <param name="g">Best found point in mesh.</param>
         /// <param name="gFitness">Fitness of best found point.</param>
         /// <param name="gFeasible">Feasibility of best found point.</param>
-        void RecursiveInner(
-            int curDim,
-            int numIterationsPerDim,
-            double[] delta,
-            ref double[] x,
-            ref double[] g,
-            ref double gFitness,
-            ref bool gFeasible)
+        void RecursiveInner(int curDim, int numIterationsPerDim, double[] delta, ref double[] x, ref double[] g,
+            ref double gFitness, ref bool gFeasible)
         {
             int n = Problem.Dimensionality;
 

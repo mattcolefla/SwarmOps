@@ -54,9 +54,9 @@ namespace SwarmOps
         /// </summary>
         public void Clear()
         {
-            for (int i = 0; i < Trace.Length; i++)
+            foreach (var t in Trace)
             {
-                Trace[i].Clear();
+                t.Clear();
             }
         }
         #endregion
@@ -92,13 +92,8 @@ namespace SwarmOps
                     double min = trace.Min;
                     double max = trace.Max;
 
-                    writer.WriteLine(
-                        "{0} {1} {2} {3} {4}",
-                        Iteration(i),
-                        Tools.FormatNumber(mean),
-                        Tools.FormatNumber(stdDev),
-                        Tools.FormatNumber(min),
-                        Tools.FormatNumber(max));
+                    writer.WriteLine("{0} {1} {2} {3} {4}", Iteration(i), Tools.FormatNumber(mean),
+                        Tools.FormatNumber(stdDev), Tools.FormatNumber(min), Tools.FormatNumber(max));
                 }
                 else
                 {

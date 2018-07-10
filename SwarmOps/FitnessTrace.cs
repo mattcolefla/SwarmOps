@@ -104,10 +104,7 @@ namespace SwarmOps
             }
 
             // Call chained fitness-tracer.
-            if (ChainedFitnessTrace != null)
-            {
-                ChainedFitnessTrace.Add(iteration, fitness, feasible);
-            }
+            ChainedFitnessTrace?.Add(iteration, fitness, feasible);
         }
 
         /// <summary>

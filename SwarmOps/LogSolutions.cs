@@ -77,7 +77,7 @@ namespace SwarmOps
         /// <summary>
         /// Return the name of the problem.
         /// </summary>
-        public override string Name => "LogSolutions (" + Problem.Name + ")";
+        public override string Name => string.Intern("LogSolutions (") + Problem.Name + string.Intern(")");
 
         /// <summary>
         /// Compute the fitness measure by passing the
@@ -94,7 +94,7 @@ namespace SwarmOps
         {
             double fitness = Problem.Fitness(parameters, fitnessLimit, oldFeasible, newFeasible);
 
-            // Log solutions. If feasibiilty is required then only log feasible solutions.
+            // Log solutions. If feasibility is required then only log feasible solutions.
             if (!OnlyFeasible || newFeasible)
             {
                 // Log solutions with better fitness and feasibility.

@@ -3,6 +3,7 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole 
 /// ------------------------------------------------------
 
 using System;
@@ -10,9 +11,14 @@ using System;
 using SwarmOps;
 using SwarmOps.Problems;
 using SwarmOps.Optimizers;
+using Console = Colorful.Console;
+using System.Drawing;
 
 namespace TestMetaBenchmarks
 {
+    using NodaTime;
+    using NodaTime.Extensions;
+
     /// <summary>
     /// Test meta-optimization, that is, tuning of control parameters
     /// for an optimizer by applying an additional layer of optimization.
@@ -73,7 +79,7 @@ namespace TestMetaBenchmarks
         // The meta-fitness consists of computing optimization performance
         // for the problems listed above over several optimization runs and
         // sum the results, so we wrap the Optimizer-object in a
-        // MetaFitness-object which takes of this.
+        // MetaFitness-object which takes care of this.
         static MetaFitness MetaFitness = new MetaFitness(Optimizer, WeightedProblems, NumRuns, MetaNumIterations);
 
         // Print meta-optimization progress.
@@ -114,53 +120,53 @@ namespace TestMetaBenchmarks
             MetaOptimizer.FitnessTrace = feasibleTrace;
 
             // Output settings.
-            Console.WriteLine("Meta-Optimization of benchmark problems.");
+            Console.WriteLine("Meta-Optimization of benchmark problems.", Color.Yellow);
             Console.WriteLine();
-            Console.WriteLine("Meta-method: {0}", MetaOptimizer.Name);
-            Console.WriteLine("Using following parameters:");
+            Console.WriteLine("Meta-method: {0}", MetaOptimizer.Name, Color.Yellow);
+            Console.WriteLine("Using following parameters:", Color.Yellow);
             Tools.PrintParameters(MetaOptimizer, MetaParameters);
-            Console.WriteLine("Number of meta-runs: {0}", MetaNumRuns);
-            Console.WriteLine("Number of meta-iterations: {0}", MetaNumIterations);
+            Console.WriteLine("Number of meta-runs: {0}", MetaNumRuns, Color.Yellow);
+            Console.WriteLine("Number of meta-iterations: {0}", MetaNumIterations, Color.Yellow);
             Console.WriteLine();
-            Console.WriteLine("Method to be meta-optimized: {0}", Optimizer.Name);
-            Console.WriteLine("Number of benchmark problems: {0}", WeightedProblems.Length);
+            Console.WriteLine("Method to be meta-optimized: {0}", Optimizer.Name, Color.Yellow);
+            Console.WriteLine("Number of benchmark problems: {0}", WeightedProblems.Length, Color.Yellow);
 
-            for (int i = 0; i < WeightedProblems.Length; i++)
+            foreach (var t in WeightedProblems)
             {
-                Problem problem = WeightedProblems[i].Problem;
-                double weight = WeightedProblems[i].Weight;
+                Problem problem = t.Problem;
+                double weight = t.Weight;
 
-                Console.WriteLine("\t({0})\t{1}", weight, problem.Name);
+                Console.WriteLine("\t({0})\t{1}", weight, problem.Name, Color.Yellow);
             }
 
-            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim);
-            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns);
-            Console.WriteLine("Number of iterations per run: {0}", NumIterations);
+            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim, Color.Yellow);
+            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns, Color.Yellow);
+            Console.WriteLine("Number of iterations per run: {0}", NumIterations, Color.Yellow);
             if (UseMangler)
             {
                 Console.WriteLine("Mangle search-space:");
-                Console.WriteLine("\tSpillover:     {0}", Spillover);
-                Console.WriteLine("\tDisplacement:  {0}", Displacement);
-                Console.WriteLine("\tDiffusion:     {0}", Diffusion);
-                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise);
+                Console.WriteLine("\tSpillover:     {0}", Spillover, Color.Yellow);
+                Console.WriteLine("\tDisplacement:  {0}", Displacement, Color.Yellow);
+                Console.WriteLine("\tDiffusion:     {0}", Diffusion, Color.Yellow);
+                Console.WriteLine("\tFitnessNoise:  {0}", FitnessNoise, Color.Yellow);
             }
             else
             {
-                Console.WriteLine("Mangle search-space: No");
+                Console.WriteLine("Mangle search-space: No", Color.Red);
             }
             Console.WriteLine();
 
-            Console.WriteLine("0/1 Boolean whether optimizer's control parameters are feasible.");
-            Console.WriteLine("*** Indicates meta-fitness/feasibility is an improvement.");
+            Console.WriteLine("0/1 Boolean whether optimizer's control parameters are feasible.", Color.Yellow);
+            Console.WriteLine("*** Indicates meta-fitness/feasibility is an improvement.", Color.Yellow);
 
-            // Start-time.
-            DateTime t1 = DateTime.Now;
+            // Starting-time.
+            ZonedDateTime t1 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
 
             // Perform the meta-optimization runs.
             double fitness = MetaRepeat.Fitness(MetaParameters);
 
-            // End-time.
-            DateTime t2 = DateTime.Now;
+            ZonedDateTime t2 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
+            Duration diff = t2.ToInstant() - t1.ToInstant();
 
             // Compute result-statistics.
             Statistics.Compute();
@@ -170,29 +176,29 @@ namespace TestMetaBenchmarks
 
             // Output results and statistics.
             Console.WriteLine();
-            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name);
+            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name, Color.Green);
             Tools.PrintParameters(Optimizer, bestParameters);
-            Console.WriteLine("Parameters written in array notation:");
-            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4));
-            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin));
-            Console.WriteLine("Worst meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMax));
-            Console.WriteLine("Mean meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMean));
-            Console.WriteLine("StdDev for meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessStdDev));
+            Console.WriteLine("Parameters written in array notation:", Color.Green);
+            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4), Color.Green);
+            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin), Color.Green);
+            Console.WriteLine("Worst meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMax), Color.Green);
+            Console.WriteLine("Mean meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMean), Color.Green);
+            Console.WriteLine("StdDev for meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessStdDev), Color.Green);
 
             // Output best found parameters.
             Console.WriteLine();
-            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity);
+            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity, Color.Green);
             foreach (Solution candidateSolution in LogSolutions.Log)
             {
                 Console.WriteLine("\t{0}\t{1}\t{2}",
                     Tools.ArrayToStringRaw(candidateSolution.Parameters, 4),
                     Tools.FormatNumber(candidateSolution.Fitness),
-                    (candidateSolution.Feasible) ? (1) : (0));
+                    (candidateSolution.Feasible) ? (1) : (0), Color.Green);
             }
 
             // Output time-usage.
             Console.WriteLine();
-            Console.WriteLine("Time usage: {0}", t2 - t1);
+            Console.WriteLine("Time usage: {0}", t2 - t1, Color.Yellow);
 
             // Output fitness trace.
             string traceFilename

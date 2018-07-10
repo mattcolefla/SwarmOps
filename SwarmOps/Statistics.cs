@@ -4,6 +4,7 @@
 /// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole 
 /// ------------------------------------------------------
 
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using SwarmOps.Extensions;
 
 namespace SwarmOps
 {
+    /// <inheritdoc />
     /// <summary>
     /// Wrapper for an optimizer providing statistics such as
     /// mean fitness achieved over a number of optimization runs,
@@ -19,7 +21,7 @@ namespace SwarmOps
     /// same methods as the optimizer itself, but stores the
     /// optimization results so as to compute the statistics.
     /// </summary>
-    public class Statistics : OptimizerWrapper
+    public sealed class Statistics : OptimizerWrapper
     {
         #region Constructors.
         /// <summary>
