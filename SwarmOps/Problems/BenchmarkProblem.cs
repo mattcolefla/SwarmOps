@@ -3,6 +3,7 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// ------------------------------------------------------
 
 namespace SwarmOps.Problems
@@ -22,20 +23,13 @@ namespace SwarmOps.Problems
         /// <param name="lowerInit">Lower boundary for initialization.</param>
         /// <param name="upperInit">Upper boundary for initialization.</param>
         /// <param name="maxIterations">Max optimization iterations to perform.</param>
-        public BenchmarkProblem(
-            int dimensionality,
-            double lowerBound,
-            double upperBound,
-            double lowerInit,
-            double upperInit,
-            int maxIterations)
+        public BenchmarkProblem(int dimensionality, double lowerBound, double upperBound, double lowerInit,
+            double upperInit,int maxIterations)
             : base(maxIterations)
         {
             _dimensionality = dimensionality;
-
             _lowerBound = new double[Dimensionality];
             _upperBound = new double[Dimensionality];
-
             _lowerInit = new double[Dimensionality];
             _upperInit = new double[Dimensionality];
 
@@ -43,7 +37,6 @@ namespace SwarmOps.Problems
             {
                 _lowerBound[i] = lowerBound;
                 _upperBound[i] = upperBound;
-
                 _lowerInit[i] = lowerInit;
                 _upperInit[i] = upperInit;
             }

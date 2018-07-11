@@ -53,7 +53,7 @@ namespace SwarmOps
         public int Count
         {
             get;
-            protected set;
+            private set;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace SwarmOps
         public int CountFeasible
         {
             get;
-            protected set;
+            private set;
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace SwarmOps
         /// <summary>
         /// Return the name of the problem.
         /// </summary>
-        public override string Name => "Statistics (" + Optimizer.Name + ")";
+        public override string Name => string.Intern("Statistics (") + Optimizer.Name + string.Intern(")");
 
         /// <summary>
         /// Perform one optimization run and return the best found solution.

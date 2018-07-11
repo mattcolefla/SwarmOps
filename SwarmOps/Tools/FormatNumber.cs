@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -27,19 +28,19 @@ namespace SwarmOps
 
                 if (dAbs < 1e-2)
                 {
-                    s = String.Format(_cultureInfo, "{0:0.##e0}", d.Value);
+                    s = string.Format(_cultureInfo, "{0:0.##e0}", d.Value);
                 }
                 else if (dAbs > 1e+6)
                 {
-                    s = String.Format(_cultureInfo, "{0:0.##e+0}", d.Value);
+                    s = string.Format(_cultureInfo, "{0:0.##e+0}", d.Value);
                 }
                 else if (dAbs > 1e+3)
                 {
-                    s = String.Format(_cultureInfo, "{0:0.}", d.Value);
+                    s = string.Format(_cultureInfo, "{0:0.}", d.Value);
                 }
                 else
                 {
-                    s = String.Format(_cultureInfo, "{0:0.##}", d.Value);
+                    s = string.Format(_cultureInfo, "{0:0.##}", d.Value);
                 }
             }
             else
@@ -56,7 +57,7 @@ namespace SwarmOps
         /// </summary>
         public static string FormatPercent(double? d)
         {
-            return String.Format(_cultureInfo, "{0:0.##}%", d*100);
+            return string.Format(_cultureInfo, "{0:0.##}%", d*100);
         }
     }
 }

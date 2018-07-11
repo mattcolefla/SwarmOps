@@ -10,6 +10,8 @@ using System.Diagnostics;
 
 namespace SwarmOps.Optimizers
 {
+    using EnsureThat;
+
     /// <summary>
     /// Particle Swarm Optimization (PSO) originally due to
     /// Eberhart et al. (1, 2). This is a 'plain vanilla'
@@ -230,6 +232,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public int GetNumAgents(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return (int)System.Math.Round(parameters[0], System.MidpointRounding.AwayFromZero);
         }
 
@@ -239,6 +243,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public double GetOmega(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return parameters[1];
         }
 
@@ -248,6 +254,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public double GetPhiP(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return parameters[2];
         }
 
@@ -257,6 +265,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public double GetPhiG(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return parameters[3];
         }
         #endregion
@@ -265,14 +275,15 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name => "PSO";
+        public override string Name => string.Intern("PSO");
 
         /// <summary>
         /// Number of control parameters for optimizer.
         /// </summary>
         public override int Dimensionality => 4;
 
-        string[] _parameterName = { "S", "omega", "phi_p", "phi_g" };
+        string[] _parameterName = { string.Intern("S"), string.Intern("omega"), 
+            string.Intern("phi_p"), string.Intern("phi_g") };
 
         /// <summary>
         /// Control parameter names.
@@ -310,6 +321,8 @@ namespace SwarmOps.Optimizers
         public override Result Optimize(double[] parameters)
         {
             Debug.Assert(parameters != null && parameters.Length == Dimensionality);
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).SizeIs(Dimensionality);
 
             // Signal beginning of optimization run.
             Problem.BeginOptimizationRun();
@@ -350,7 +363,6 @@ namespace SwarmOps.Optimizers
             for (k = 0; k < n; k++)
             {
                 double range = System.Math.Abs(upperBound[k] - lowerBound[k]);
-
                 velocityLowerBound[k] = -range;
                 velocityUpperBound[k] = range;
             }

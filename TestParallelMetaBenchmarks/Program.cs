@@ -3,6 +3,7 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// ------------------------------------------------------
 
 using System;
@@ -11,9 +12,14 @@ using System.Collections.Generic;
 using SwarmOps;
 using SwarmOps.Problems;
 using SwarmOps.Optimizers;
+using Console = Colorful.Console;
+
 
 namespace TestParallelMetaBenchmarks
 {
+    using System.Drawing;
+    using NodaTime;
+
     /// <summary>
     /// Similar to TestMetaBenchmark only using the parallel version
     /// of MetaFitness and a thread-safe PRNG. Search-space mangler
@@ -27,12 +33,12 @@ namespace TestParallelMetaBenchmarks
         static readonly int DimFactor = 2000;
         static readonly int NumIterations = DimFactor * Dim;
 
-        // The optimizer whose control paramters are to be tuned.
+        // The optimizer whose control parameters are to be tuned.
         static Optimizer Optimizer = new MOL();
 
         // Problems to optimize. That is, the optimizer is having its control
         // parameters tuned to work well on these problems. The numbers are weights
-        // that significy mutual importance of the problems in tuning. Higher weight
+        // that signify mutual importance of the problems in tuning. Higher weight
         // means more importance.
         static WeightedProblem[] WeightedProblems =
             new WeightedProblem[]
@@ -105,42 +111,43 @@ namespace TestParallelMetaBenchmarks
             MetaOptimizer.FitnessTrace = feasibleTrace;
 
             // Output settings.
-            Console.WriteLine("Meta-Optimization of benchmark problems. (Parallel)");
+            Console.WriteLine("Meta-Optimization of benchmark problems. (Parallel)", Color.Yellow);
             Console.WriteLine();
-            Console.WriteLine("Meta-method: {0}", MetaOptimizer.Name);
-            Console.WriteLine("Using following parameters:");
+            Console.WriteLine("Meta-method: {0}", MetaOptimizer.Name, Color.Yellow);
+            Console.WriteLine("Using following parameters:", Color.Yellow);
             Tools.PrintParameters(MetaOptimizer, MetaParameters);
-            Console.WriteLine("Number of meta-runs: {0}", MetaNumRuns);
-            Console.WriteLine("Number of meta-iterations: {0}", MetaNumIterations);
+            Console.WriteLine("Number of meta-runs: {0}", MetaNumRuns, Color.Yellow);
+            Console.WriteLine("Number of meta-iterations: {0}", MetaNumIterations, Color.Yellow);
             Console.WriteLine();
-            Console.WriteLine("Method to be meta-optimized: {0}", Optimizer.Name);
-            Console.WriteLine("Number of benchmark problems: {0}", WeightedProblems.Length);
+            Console.WriteLine("Method to be meta-optimized: {0}", Optimizer.Name, Color.Yellow);
+            Console.WriteLine("Number of benchmark problems: {0}", WeightedProblems.Length, Color.Yellow);
 
-            for (int i = 0; i < WeightedProblems.Length; i++)
+            foreach (var t in WeightedProblems)
             {
-                Problem problem = WeightedProblems[i].Problem;
-                double weight = WeightedProblems[i].Weight;
+                Problem problem = t.Problem;
+                double weight = t.Weight;
 
-                Console.WriteLine("\t({0})\t{1}", weight, problem.Name);
+                Console.WriteLine("\t({0})\t{1}", weight, problem.Name, Color.Yellow);
             }
 
-            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim);
-            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns);
-            Console.WriteLine("Number of iterations per run: {0}", NumIterations);
-            Console.WriteLine("(Search-space mangling not supported for parallel meta-optimization.)");
+            Console.WriteLine("Dimensionality for each benchmark problem: {0}", Dim, Color.Yellow);
+            Console.WriteLine("Number of runs per benchmark problem: {0}", NumRuns, Color.Yellow);
+            Console.WriteLine("Number of iterations per run: {0}", NumIterations, Color.Yellow);
+            Console.WriteLine("(Search-space mangling not supported for parallel meta-optimization.)", Color.Yellow);
             Console.WriteLine();
 
-            Console.WriteLine("0/1 Boolean whether optimizer's control parameters are feasible.");
-            Console.WriteLine("*** Indicates meta-fitness/feasibility is an improvement.");
+            Console.WriteLine("0/1 Boolean whether optimizer's control parameters are feasible.", Color.Yellow);
+            Console.WriteLine("*** Indicates meta-fitness/feasibility is an improvement.", Color.Yellow);
 
             // Start-time.
-            DateTime t1 = DateTime.Now;
+            ZonedDateTime t1 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
 
             // Perform the meta-optimization runs.
             double fitness = MetaRepeat.Fitness(MetaParameters);
 
             // End-time.
-            DateTime t2 = DateTime.Now;
+            ZonedDateTime t2 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
+            Duration diff = t2.ToInstant() - t1.ToInstant();
 
             // Compute result-statistics.
             Statistics.Compute();
@@ -150,24 +157,24 @@ namespace TestParallelMetaBenchmarks
 
             // Output results and statistics.
             Console.WriteLine();
-            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name);
+            Console.WriteLine("Best found parameters for {0} optimizer:", Optimizer.Name, Color.Green);
             Tools.PrintParameters(Optimizer, bestParameters);
-            Console.WriteLine("Parameters written in array notation:");
-            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4));
-            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin));
-            Console.WriteLine("Worst meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMax));
-            Console.WriteLine("Mean meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMean));
-            Console.WriteLine("StdDev for meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessStdDev));
+            Console.WriteLine("Parameters written in array notation:", Color.Green);
+            Console.WriteLine("\t{0}", Tools.ArrayToString(bestParameters, 4), Color.Green);
+            Console.WriteLine("Best parameters have meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMin), Color.Green);
+            Console.WriteLine("Worst meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMax), Color.Green);
+            Console.WriteLine("Mean meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessMean), Color.Green);
+            Console.WriteLine("StdDev for meta-fitness: {0}", Tools.FormatNumber(Statistics.FitnessStdDev), Color.Green);
 
             // Output best found parameters.
             Console.WriteLine();
-            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity);
+            Console.WriteLine("Best {0} found parameters:", LogSolutions.Capacity, Color.Green);
             foreach (Solution candidateSolution in LogSolutions.Log)
             {
                 Console.WriteLine("\t{0}\t{1}\t{2}",
                     Tools.ArrayToStringRaw(candidateSolution.Parameters, 4),
                     Tools.FormatNumber(candidateSolution.Fitness),
-                    (candidateSolution.Feasible) ? (1) : (0));
+                    (candidateSolution.Feasible) ? (1) : (0), Color.Green);
             }
 
             // Output time-usage.

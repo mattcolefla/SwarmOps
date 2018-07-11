@@ -1,12 +1,15 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
 
 namespace SwarmOps
 {
+    using EnsureThat;
+
     public static partial class Tools
     {
         /// <summary>
@@ -26,6 +29,9 @@ namespace SwarmOps
         /// <returns></returns>
         public static string ArrayToString(double[] x, int digits)
         {
+            Ensure.That(x).IsNotNull();
+            Ensure.That(digits).IsGte(0);
+
             string s = "{ ";
 
             if (x.Length>0)
@@ -60,11 +66,14 @@ namespace SwarmOps
         /// <returns></returns>
         public static string ArrayToStringRaw(double[] x, int digits)
         {
-            string s = "";
+            Ensure.That(x).IsNotNull();
+            Ensure.That(digits).IsGte(0);
 
-            for (int i = 0; i < x.Length; i++)
+            string s = string.Empty;
+
+            foreach (var t in x)
             {
-                s += NumberToString(x[i], digits) + " ";
+                s += NumberToString(t, digits) + " ";
             }
 
             return s;
@@ -77,6 +86,8 @@ namespace SwarmOps
         /// <param name="digits">Number of digits.</param>
         public static string NumberToString(double x, int digits)
         {
+            Ensure.That(x).IsGte(0);
+            Ensure.That(digits).IsGte(0);
             return System.Math.Round(x, digits).ToString(_cultureInfo);
         }
     }

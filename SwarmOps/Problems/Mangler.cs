@@ -3,6 +3,7 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// ------------------------------------------------------
 
 using System;
@@ -29,10 +30,10 @@ namespace SwarmOps.Problems
         /// <param name="fitnessNoise">FitnessNoise factor, lager than 0, e.g. 0.01</param>
         /// <param name="spillover">Spillover factor, larger than 0, e.g. 0.05</param>
         public Mangler(Problem problem,
-            double diffusion,
-            double displacement,
-            double spillover,
-            double fitnessNoise)
+            double diffusion = 0.01,
+            double displacement = 0.1,
+            double spillover= 0.05,
+            double fitnessNoise = 0.01)
             : base(problem)
         {
             // Assign to fields.
@@ -135,7 +136,7 @@ namespace SwarmOps.Problems
             double fitness = Problem.Fitness(y, fitnessLimit, oldFeasible, newFeasible);
 
             // Fitness noise.
-            double noise = System.Math.Abs(Globals.Random.Gauss()) * FitnessNoise + 1;
+            double noise = Math.Abs(Globals.Random.Gauss()) * FitnessNoise + 1;
             fitness *= noise;
 
             // Compute and return fitness of displaced parameters.
@@ -184,8 +185,7 @@ namespace SwarmOps.Problems
             for (i = 0; i < n; i++)
             {
                 double range = Problem.UpperBound[i] - Problem.LowerBound[i];
-                double d = Displacement * Globals.Random.Uniform(-range, range);
-                b[i] = d;
+                b[i] = Displacement * Globals.Random.Uniform(-range, range);
             }
 
             // Call through problem-chain.

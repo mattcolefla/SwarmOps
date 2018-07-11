@@ -3,15 +3,21 @@
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
+/// Portions copyright (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// ------------------------------------------------------
 
 using System;
 using SwarmOps;
 using SwarmOps.Optimizers;
 using SwarmOps.Problems;
+using Console = Colorful.Console;
+
 
 namespace TestParallelBenchmarks
 {
+    using System.Drawing;
+    using NodaTime;
+
     /// <summary>
     /// Test a parallel optimizer on various benchmark problems.
     /// This is essentially the same as TestBenchmarks only the
@@ -23,7 +29,7 @@ namespace TestParallelBenchmarks
     class Program
     {
         // Create optimizer object.
-        static Optimizer Optimizer = new SwarmOps.Optimizers.Parallel.MOL();
+        static readonly Optimizer Optimizer = new SwarmOps.Optimizers.Parallel.MOL();
 
         // Control parameters for optimizer.
         static readonly double[] Parameters = Optimizer.DefaultParameters;
@@ -82,8 +88,9 @@ namespace TestParallelBenchmarks
             // Compute result-statistics.
             Statistics.Compute();
 
+            string msg = "{0} = {1} - {2} = {3} = {4} = {5} = {6} = {7} = {8} \r\n";
             // Output result-statistics.
-            Console.WriteLine("{0} & {1} & {2} & {3} & {4} & {5} & {6} & {7} & {8} \\\\",
+            Console.WriteFormatted(msg, Color.OrangeRed, Color.Green,
                 problem.Name,
                 Tools.FormatNumber(Statistics.FitnessMean),
                 Tools.FormatNumber(Statistics.FitnessStdDev),
@@ -133,11 +140,11 @@ namespace TestParallelBenchmarks
                 Console.WriteLine("Mangle search-space: No");
             }
             Console.WriteLine();
-            Console.WriteLine("Problem & Mean & Std.Dev. & Min & Q1 & Median & Q3 & Max & Feasible \\\\");
-            Console.WriteLine("\\hline");
+            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible");
+            Console.WriteLine("");
 
-            // Starting-time.
-            DateTime t1 = DateTime.Now;
+            // Start-time.
+            ZonedDateTime t1 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
 
             // Simulates a time-consuming optimization problem.
             //Optimize(new SphereSleep(1, Dim, NumIterations));
@@ -183,12 +190,14 @@ namespace TestParallelBenchmarks
             Optimize(new EggHolder(Dim, NumIterations));
             Optimize(new DropWave(Dim, NumIterations));
             Optimize(new CrossInTray(Dim, NumIterations));
- 
+
             // BenchmarkProblem problem using Globals.Random (see note above.)
             //Optimize(new QuarticNoise(Dim, NumIterations));
 
             // End-time.
-            DateTime t2 = DateTime.Now;
+            ZonedDateTime t2 = LocalDateTime.FromDateTime(DateTime.Now).InUtc();
+            Duration diff = t2.ToInstant() - t1.ToInstant();
+
 
             // Output time-usage.
             Console.WriteLine();

@@ -10,6 +10,8 @@ using System.Diagnostics;
 
 namespace SwarmOps.Optimizers
 {
+    using EnsureThat;
+
     /// <summary>
     /// Many Optimizing Liaisons (MOL) optimization method devised
     /// as a simplification to the PSO method originally due to
@@ -18,7 +20,7 @@ namespace SwarmOps.Optimizers
     /// the algorithm also makes use of random selection of which
     /// particle to update instead of iterating over the entire swarm.
     /// It is similar to the "Social Only" PSO suggested by Kennedy (3),
-    /// and was studied more thoroguhly by Pedersen et al. (4) who
+    /// and was studied more thoroughly by Pedersen et al. (4) who
     /// found it to sometimes outperform PSO, and have more easily
     /// tunable control parameters.
     /// </summary>
@@ -210,6 +212,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public int GetNumAgents(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return (int)System.Math.Round(parameters[0], System.MidpointRounding.AwayFromZero);
         }
 
@@ -219,6 +223,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public double GetOmega(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return parameters[1];
         }
 
@@ -228,6 +234,8 @@ namespace SwarmOps.Optimizers
         /// <param name="parameters">Optimizer parameters.</param>
         public double GetPhi(double[] parameters)
         {
+            Ensure.That(parameters).IsNotNull();
+            Ensure.That(parameters).HasItems();
             return parameters[2];
         }
         #endregion
@@ -236,15 +244,14 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name => "MOL";
+        public override string Name => string.Intern("MOL");
 
         /// <summary>
         /// Number of control parameters for optimizer.
         /// </summary>
         public override int Dimensionality => 3;
 
-        string[] _parameterName = { "S", "omega", "phi" };
-
+        string[] _parameterName = { string.Intern("S"), string.Intern("omega"), string.Intern("phi") };
         /// <summary>
         /// Control parameter names.
         /// </summary>

@@ -37,7 +37,7 @@ namespace SwarmOps.Optimizers
         /// <summary>
         /// Name of the optimizer.
         /// </summary>
-        public override string Name => "RND";
+        public override string Name => string.Intern("RND");
 
         /// <summary>
         /// Number of control parameters for optimizer.

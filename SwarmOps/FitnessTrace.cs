@@ -11,6 +11,8 @@ using System.Diagnostics;
 
 namespace SwarmOps
 {
+    using EnsureThat;
+
     /// <summary>
     /// Base-class for tracing fitness progress during
     /// optimization.
@@ -118,9 +120,11 @@ namespace SwarmOps
         /// <param name="filename">Name of file.</param>
         public void WriteToFile(string filename)
         {
-            TextWriter writer = new StreamWriter(filename);
-
-            Write(writer);
+            Ensure.That(filename).IsNotNullOrWhiteSpace();
+            using (TextWriter writer = new StreamWriter(filename))
+            {
+                Write(writer);
+            }
         }
         #endregion
 

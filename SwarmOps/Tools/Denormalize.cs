@@ -1,12 +1,15 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
 
 namespace SwarmOps
 {
+    using EnsureThat;
+
     public static partial class Tools
     {
         /// <summary>
@@ -36,9 +39,10 @@ namespace SwarmOps
         /// </summary>
         public static void Denormalize(ref double[] x)
         {
+            Ensure.That(x).IsNotNull();
             for (int i = 0; i < x.Length; i++)
             {
-                x[i] = Tools.Denormalize(x[i]);
+                x[i] = Denormalize(x[i]);
             }
         }
     }

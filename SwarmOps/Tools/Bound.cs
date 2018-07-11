@@ -1,6 +1,7 @@
 ﻿/// ------------------------------------------------------
 /// SwarmOps - Numeric and heuristic optimization for C#
 /// Copyright (C) 2003-2011 Magnus Erik Hvass Pedersen.
+/// Portions (C) 2018 Matt R. Cole www.evolvedaisolutions.com
 /// Please see the file license.txt for license details.
 /// SwarmOps on the internet: http://www.Hvass-Labs.org/
 /// ------------------------------------------------------
@@ -9,6 +10,8 @@ using System.Diagnostics;
 
 namespace SwarmOps
 {
+    using EnsureThat;
+
     public static partial class Tools
     {
         /// <summary>
@@ -20,7 +23,9 @@ namespace SwarmOps
         /// <returns>Bounded value.</returns>
         public static double Bound(double x, double lower, double upper)
         {
-            Debug.Assert(upper >= lower);
+            //Ensure.That(x).IsGte(0);
+            //Ensure.That(lower).IsGte(0);
+            Ensure.That(upper).IsGte(lower);
 
             double y;
 
@@ -48,7 +53,8 @@ namespace SwarmOps
         /// <param name="upper">Upper boundaries.</param>
         public static void Bound(ref double[] x, double[] lower, double[] upper)
         {
-            Debug.Assert(x.Length == lower.Length && x.Length == upper.Length);
+            Ensure.That(x).SizeIs(lower.Length);
+            Ensure.That(x).SizeIs(upper.Length);
 
             for (int i = 0; i < x.Length; i++)
             {
@@ -64,7 +70,8 @@ namespace SwarmOps
         /// <param name="upper">Upper boundaries.</param>
         public static bool BetweenBounds(double[] x, double[] lower, double[] upper)
         {
-            Debug.Assert(x.Length == lower.Length && x.Length == upper.Length);
+            Ensure.That(x).SizeIs(lower.Length);
+            Ensure.That(x).SizeIs(upper.Length);
 
             bool retVal = true;
 

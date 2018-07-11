@@ -151,7 +151,7 @@ namespace TestBenchmarks
                 Console.WriteLine("Mangle search-space: No", Color.Yellow);
             }
             Console.WriteLine();
-            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible \\\\", Color.LightBlue);
+            Console.WriteLine("Problem = Mean = Std.Dev. = Min = Q1 = Median = Q3 = Max = Feasible", Color.LightBlue);
             Console.WriteLine("");
 
             // Starting-time.
