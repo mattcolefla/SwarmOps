@@ -60,16 +60,16 @@ namespace TestMesh
         static Problem[] Problems =
             new Problem[]
             {
-                //Mangle(new Ackley(Dim, NumIterations)),
+                Mangle(new Ackley(Dim, NumIterations)),
                 Mangle(new Griewank(Dim, NumIterations)),
                 Mangle(new Penalized1(Dim, NumIterations)),
-                //Mangle(new Penalized2(Dim, NumIterations)),
+                Mangle(new Penalized2(Dim, NumIterations)),
                 //Mangle(new QuarticNoise(Dim, NumIterations)),
-                //Mangle(new Rastrigin(Dim, NumIterations)),
+                Mangle(new Rastrigin(Dim, NumIterations)),
                 Mangle(new Rosenbrock(Dim, NumIterations)),
                 Mangle(new Schwefel12(Dim, NumIterations)),
-                //Mangle(new Schwefel221(Dim, NumIterations)),
-                //Mangle(new Schwefel222(Dim, NumIterations)),
+                Mangle(new Schwefel221(Dim, NumIterations)),
+                Mangle(new Schwefel222(Dim, NumIterations)),
                 Mangle(new Sphere(Dim, NumIterations)),
                 Mangle(new Step(Dim, NumIterations)),
             };

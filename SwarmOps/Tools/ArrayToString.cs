@@ -86,8 +86,8 @@ namespace SwarmOps
         /// <param name="digits">Number of digits.</param>
         public static string NumberToString(double x, int digits)
         {
-            Ensure.That(x).IsGte(0);
-            Ensure.That(digits).IsGte(0);
+            //Ensure.That(x).IsGte(0);
+            //Ensure.That(digits).IsGte(0);
             return System.Math.Round(x, digits).ToString(_cultureInfo);
         }
     }
